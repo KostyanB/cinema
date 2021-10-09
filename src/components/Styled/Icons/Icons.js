@@ -2,7 +2,7 @@ import React from 'react';
 import IconStyle from './IconStyle';
 import env from '../../../env.json';
 
-export const ClockIcon = ({ name = "Длительность", color = "#FFF", width = 20, height = 20 }) => (
+export const ClockIcon = ({ name = "Продолжительность", color = "#FFF", width = 20, height = 20 }) => (
     <IconStyle viewBox="0 0 20 20" fill="none" width={width} height={height}>
         <title>{name}</title>
         <path fill={color} d="M13.5631 11.7661L10.7746 9.67465V5.41442C10.7746 4.98606 10.4283 4.63981 9.99995 4.63981C9.57159 4.63981 9.22534 4.98606 9.22534 5.41442V10.062C9.22534 10.306 9.33999 10.5361 9.53519 10.6817L12.6336 13.0055C12.773 13.11 12.9357 13.1604 13.0975 13.1604C13.3338 13.1604 13.5662 13.0543 13.718 12.8498C13.9752 12.5081 13.9055 12.0225 13.5631 11.7661Z" fill="white"/>
@@ -29,11 +29,11 @@ export const LogoIcon = ({ name = "Cinema", color = "currentColor", width = 30, 
     </IconStyle>
 )
 
-export const PlayIcon = ({ name = "Смотреть", width = 100, height = 100, arrow = "#F20D01", ring = "#FFF"}) => (
+export const PlayIcon = ({ name = "Смотреть трейлер", width = 100, height = 100, arrow = "#F20D01", ring = "#FFF"}) => (
     <IconStyle viewBox="0 0 100 100" fill="none" width={width} height={height}>
         <title>{name}</title>
         <circle cx={width / 2} cy={height / 2} r={width / 2} fill={ring}/>
-        <g clip-path="url(#clip0)">
+        <g clipPath="url(#clip0)">
             <path fill={arrow} d="M43.0758 30.0033C39.3071 27.8416 36.2518 29.6125 36.2518 33.9556V66.0059C36.2518 70.3533 39.3071 72.1219 43.0758 69.9623L71.0893 53.8967C74.8592 51.7342 74.8592 48.2306 71.0893 46.0686L43.0758 30.0033Z"/>
         </g>
         <defs>
@@ -61,19 +61,6 @@ export const ScreenLight = ({ name, color = env.colors.screenLight, width = 914,
                 <stop stop-color={color} stop-opacity="0.21"/>
                 <stop offset="1" stop-color={color} stop-opacity="0"/>
             </linearGradient>
-        </defs>
-    </IconStyle>
-)
-
-export const ImdbIcon = ({ name = "Rate", width = 35, height = 18 }) => (
-    <IconStyle viewBox="0 0 35 18" fill="none" width={width} height={height}>
-        <title>{name}</title>
-        <rect width={width} height={height - 0.5} fill="url(#pattern0)"/>
-        <defs>
-            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlinkHref="#image0" transform="translate(0 -0.00416667) scale(0.000833333 0.00166667)"/>
-            </pattern>
-            <image id="image0" width="1200" height="605" xlinkHref="../../../img/imdb.png"/>
         </defs>
     </IconStyle>
 )

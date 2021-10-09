@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 import { Context } from '../Functions/Context';
 import env from '../../env.json';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,7 @@ import { Container } from '../Styled/Container';
 const MovieLink = styled(Link)`
     display: block;
     cursor: pointer;
+    width: fit-content;
     font-size: ${env.fonts.mainFonts.subtitle.size};
     line-height: ${env.fonts.mainFonts.subtitle.line};
     :hover, :active {
@@ -26,7 +26,7 @@ const Title = styled.h2`
 
 const Movies = () => {
     const {
-        getMovies: { moviesDb }
+        getMovies: { moviesDb },
     } = useContext(Context);
 
     return (

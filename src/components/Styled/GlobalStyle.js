@@ -207,6 +207,8 @@ export const GlobalStyle = createGlobalStyle `
     [type="reset"],
     [type="submit"] {
         cursor: pointer;
+        outline: none;
+        border: none;
     }
 
     button:disabled,

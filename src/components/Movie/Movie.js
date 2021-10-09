@@ -1,25 +1,43 @@
-import React, { useContext } from 'react';
-// import styled from 'styled-components';
+import React, { useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Context } from '../Functions/Context';
 import env from '../../env.json';
-import { Container } from '../Styled/Container';
+import { Context } from '../Functions/Context';
+import Details from './Details';
+import FilmInfo from './FilmInfo';
+import Schedule from '../Schedule';
+
+const Wrapper = styled.section`
+    width: 100vw;
+    height: 724px;
+    padding-top: 60px;
+    position: relative;
+`;
 
 const Movie = () => {
     const { movie } = useParams();
     const {
         getMovies: { moviesObj },
-        // selectedMovie: { selectedMovie, setSelectedMovie }
+        backgroundImg: { setBackgroundImg }
     } = useContext(Context);
 
     const selectMovie = moviesObj && moviesObj[movie];
 
+    useEffect(() => selectMovie && setBackgroundImg(selectMovie.photo));
+
     return (
         <>
         {selectMovie &&
-            <Container>
-            <h2>{ selectMovie.ruTitle }</h2>
-            </Container>
+            <Wrapper>
+                <FilmInfo subtitle={selectMovie.enTitle}
+                    title={selectMovie.ruTitle}
+                    description={selectMovie.description}
+                />
+                <Details time={selectMovie.timing}
+                    rate={selectMovie.imdbRate}
+                />
+                <Schedule/>
+            </Wrapper>
         }
         </>
 

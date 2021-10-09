@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
 
     @media (max-width: 768px) {
         justify-self: center;
@@ -20,8 +20,8 @@ const Wrapper = styled.div`
     }
 `;
 const UserName = styled.p`
-    font-size: ${env.fonts.calendarFonts.month.size};
-    line-height: ${env.fonts.calendarFonts.month.size};
+    font-size: ${env.fonts.calendarFonts.label.size};
+    line-height: ${env.fonts.calendarFonts.label.size};
 `;
 const Button = styled.button`
     background: url(${userImg});
@@ -36,7 +36,7 @@ const Button = styled.button`
 
 const Auth = () => (
     <Wrapper>
-        <UserName>Привет Мила!</UserName>
+        <UserName>Привет Друг!</UserName>
         <Button></Button>
     </Wrapper>
 )
