@@ -5,8 +5,8 @@ import env from '../../../env.json';
 export const ClockIcon = ({ name = "Продолжительность", color = "#FFF", width = 20, height = 20 }) => (
     <IconStyle viewBox="0 0 20 20" fill="none" width={width} height={height}>
         <title>{name}</title>
-        <path fill={color} d="M13.5631 11.7661L10.7746 9.67465V5.41442C10.7746 4.98606 10.4283 4.63981 9.99995 4.63981C9.57159 4.63981 9.22534 4.98606 9.22534 5.41442V10.062C9.22534 10.306 9.33999 10.5361 9.53519 10.6817L12.6336 13.0055C12.773 13.11 12.9357 13.1604 13.0975 13.1604C13.3338 13.1604 13.5662 13.0543 13.718 12.8498C13.9752 12.5081 13.9055 12.0225 13.5631 11.7661Z" fill="white"/>
-        <path fill={color} d="M10 0C4.48566 0 0 4.48566 0 10C0 15.5143 4.48566 20 10 20C15.5143 20 20 15.5143 20 10C20 4.48566 15.5143 0 10 0ZM10 18.4508C5.34082 18.4508 1.54918 14.6592 1.54918 10C1.54918 5.34082 5.34082 1.54918 10 1.54918C14.66 1.54918 18.4508 5.34082 18.4508 10C18.4508 14.6592 14.6592 18.4508 10 18.4508Z" fill="white"/>
+        <path fill={color} d="M13.5631 11.7661L10.7746 9.67465V5.41442C10.7746 4.98606 10.4283 4.63981 9.99995 4.63981C9.57159 4.63981 9.22534 4.98606 9.22534 5.41442V10.062C9.22534 10.306 9.33999 10.5361 9.53519 10.6817L12.6336 13.0055C12.773 13.11 12.9357 13.1604 13.0975 13.1604C13.3338 13.1604 13.5662 13.0543 13.718 12.8498C13.9752 12.5081 13.9055 12.0225 13.5631 11.7661Z"/>
+        <path fill={color} d="M10 0C4.48566 0 0 4.48566 0 10C0 15.5143 4.48566 20 10 20C15.5143 20 20 15.5143 20 10C20 4.48566 15.5143 0 10 0ZM10 18.4508C5.34082 18.4508 1.54918 14.6592 1.54918 10C1.54918 5.34082 5.34082 1.54918 10 1.54918C14.66 1.54918 18.4508 5.34082 18.4508 10C18.4508 14.6592 14.6592 18.4508 10 18.4508Z"/>
     </IconStyle>
 )
 
@@ -47,8 +47,8 @@ export const PlayIcon = ({ name = "Смотреть трейлер", width = 100
 export const SeatIcon = ({ name = "Кресло", color = env.colors.orange, opacity = "1", width = 38, height = 30 }) => (
     <IconStyle viewBox="0 0 38 30" fill="none" width={width} height={height} x="0px" y="0px">
         <title>{name}</title>
-        <rect x="6" width="26" height="23" rx="5" fill={color} fill-opacity={opacity}/>
-        <path stroke={color} stroke-opacity={opacity} stroke-width="2" stroke-linejoin="round" d="M1.5 12V22.5C1.66667 24.6667 3.1 29 7.5 29C11.9 29 24.3333 29 30 29C32.3333 28.8333 37 27.1 37 21.5C37 15.9 37 12.8333 37 12"/>
+        <rect x="6" width="26" height="23" rx="5" fill={color} fillOpacity={opacity}/>
+        <path stroke={color} strokeOpacity={opacity} strokeWidth="2" strokeLinejoin="round" d="M1.5 12V22.5C1.66667 24.6667 3.1 29 7.5 29C11.9 29 24.3333 29 30 29C32.3333 28.8333 37 27.1 37 21.5C37 15.9 37 12.8333 37 12"/>
     </IconStyle>
 )
 
@@ -58,8 +58,8 @@ export const ScreenLight = ({ name, color = env.colors.screenLight, width = 914,
         <path d="M0 67L73.04 0H840.96L914 67H0Z" fill="url(#paint0_linear)"/>
         <defs>
             <linearGradient id="paint0_linear" x1={width / 2} y1="0" x2={width / 2} y2={height} gradientUnits="userSpaceOnUse">
-                <stop stop-color={color} stop-opacity="0.21"/>
-                <stop offset="1" stop-color={color} stop-opacity="0"/>
+                <stop stopColor={color} stopOpacity="0.21"/>
+                <stop offset="1" stopColor={color} stopOpacity="0"/>
             </linearGradient>
         </defs>
     </IconStyle>

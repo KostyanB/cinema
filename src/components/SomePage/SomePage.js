@@ -13,7 +13,7 @@ const SomePage = () => {
         backgroundImg: { setBackgroundImg }
     } = useContext(Context);
 
-    useEffect(() => setBackgroundImg(null), []);
+    useEffect(() => setBackgroundImg(null), [setBackgroundImg]);
 
 
     return (

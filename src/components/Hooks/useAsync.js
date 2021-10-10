@@ -10,7 +10,6 @@ export const useAsync = ({ asyncFn }) => {
             try {
                 setLoading(true);
                 const response = await asyncFn(...params);
-                console.log('response: ', response);
                 setResult(response);
             } catch (e) {
                 setError(e);

@@ -24,6 +24,15 @@ export const GlobalStyle = createGlobalStyle `
     :root {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
+
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: ${env.colors.scroll};
+            border-radius: 100px;
+        }
     }
     /* ***************** reset & global********************** */
     *,

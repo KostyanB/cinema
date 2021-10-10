@@ -5,7 +5,6 @@ import { Context } from './components/Functions/Context';
 import { GlobalStyle } from './components/Styled/GlobalStyle';
 // components
 import Header from './components/Header';
-// import Promo from './components/Promo';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
 import SomePage from './components/SomePage';
@@ -14,13 +13,13 @@ import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
 import { useGetMoviesDb } from './components/Hooks/useGetMoviesDb';
 import { useAsync } from './components/Hooks/useAsync';
-import { useSelectedMovie } from './components/Hooks/useSelectedMovie';
 import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
+import { useCalendar } from './components/Hooks/useCalendar';
 
 function App() {
   const getMovies = useGetMoviesDb();
-  const selectedMovie = useSelectedMovie();
   const backgroundImg = useBackgroundImg();
+  const calendar = useCalendar();
 
   const asyncTask = async () => {
     getMovies.getMoviesDb();
@@ -35,8 +34,8 @@ function App() {
   return (
     <Context.Provider value={{
       getMovies,
-      selectedMovie,
       backgroundImg,
+      calendar,
     }}>
       <GlobalStyle/>
       <Router>

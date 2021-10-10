@@ -35,6 +35,7 @@ const Rate = styled.p`
     margin-left: 12px;
     font-size: ${env.fonts.mainFonts.subtitle.size};
     line-height: ${env.fonts.mainFonts.subtitle.line};
+    font-weight: bold;
 
     span {
         margin-left: 12px;

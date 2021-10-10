@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import env from '../../env.json';
 import { Context } from '../Functions/Context';
 import Details from './Details';
 import FilmInfo from './FilmInfo';
-import Schedule from '../Schedule';
+import Calendar from '../Calendar';
 
 const Wrapper = styled.section`
     width: 100vw;
@@ -18,12 +17,18 @@ const Movie = () => {
     const { movie } = useParams();
     const {
         getMovies: { moviesObj },
-        backgroundImg: { setBackgroundImg }
+        backgroundImg: { setBackgroundImg },
+        calendar: { setActiveMovie },
     } = useContext(Context);
 
     const selectMovie = moviesObj && moviesObj[movie];
 
-    useEffect(() => selectMovie && setBackgroundImg(selectMovie.photo));
+    useEffect(() => {
+        if (selectMovie) {
+            setBackgroundImg(selectMovie.photo);
+            setActiveMovie(selectMovie.id)
+        }
+    }, [selectMovie, setActiveMovie, setBackgroundImg]);
 
     return (
         <>
@@ -36,7 +41,7 @@ const Movie = () => {
                 <Details time={selectMovie.timing}
                     rate={selectMovie.imdbRate}
                 />
-                <Schedule/>
+                <Calendar/>
             </Wrapper>
         }
         </>
