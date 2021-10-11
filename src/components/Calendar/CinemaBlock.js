@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context, CalendarContext } from '../Functions/Context';
+import { Context } from '../Functions/Context';
 import Label from './Label';
 import Selector from '../Selector';
 
@@ -20,7 +20,6 @@ const CinemaWrap = styled.div`
     height: 90px;
     display: flex;
     align-items: center;
-    position: relative;
     width: 470px;
 `;
 //************************************** */
@@ -28,46 +27,45 @@ const CinemaBlock = () => {
     const cinemas = env.calendar.cinemas;
 
     const {
-        openSelector: {
-            openCinemaSelector,
-            setOpenCinemaSelector,
-            toggleCinemaSelector,
-            setOpenSessionSelector
+        calendar: {
+            activeCinema,
+            setActiveCinema
         },
-        openButton: {
-            openBtnCinema,
-            setOpenBtnCinema,toggleBtnCinema,
-            setOpenBtnSession
+        selectors: {
+            openSelectorCinema,
+            closeCinema,
+            closeSession,
+            toggleCinema,
+            setOutsideCinema,
+            setInsideClick
         },
-    } = useContext(CalendarContext);
-
-    const {
-        calendar: { activeCinema, setActiveCinema }
     } = useContext(Context);
 
-    const handleCinemaSelector = value => {
-        setOpenCinemaSelector(false);
-        setOpenBtnCinema(false);
+    // выбор кинотеатра
+    const handleSelectedCinema = value => {
+        closeCinema();
         setActiveCinema(value);
+        setInsideClick();
     };
-
-    const handleCinemaBtn = () => {
-        toggleCinemaSelector();
-        setOpenSessionSelector(false);
-        toggleBtnCinema();
-        setOpenBtnSession(false);
+    // управление открытием селектора
+    const handleCinemaSelectors = () => {
+        toggleCinema();
+        closeSession();
+        setInsideClick();
     };
+    // фиксация клика мимо селектора
+    const handleOutsideClick = () => setOutsideCinema(true);
 
     return (
         <Wrapper>
             <Label>Кинотеатр</Label>
             <CinemaWrap>
                 <Selector items={cinemas}
-                    handleSelector={handleCinemaSelector}
-                    handleBtn={handleCinemaBtn}
-                    openBtn={openBtnCinema}
-                    openSelector={openCinemaSelector}
+                    handleSelector={handleSelectedCinema}
+                    handleBtn={handleCinemaSelectors}
+                    isOpen={openSelectorCinema}
                     title={activeCinema}
+                    handleOutsideClick={handleOutsideClick}
                 />
             </CinemaWrap>
         </Wrapper>

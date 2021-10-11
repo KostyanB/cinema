@@ -19,5 +19,10 @@ export const useAsync = ({ asyncFn }) => {
         [asyncFn]
     );
 
-    return { error, result, loading, execute };
+    return {
+        error,
+        result,
+        loading,
+        execute
+    };
 };

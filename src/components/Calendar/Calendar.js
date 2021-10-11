@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { CalendarContext } from '../Functions/Context';
+import { Context } from '../Functions/Context';
 // hooks
-import { useOpenButton } from '../Hooks/calendarHooks/useOpenButton';
-import { useOpenSelector } from '../Hooks/calendarHooks/useOpenSelector';
 import { useAsync } from '../Hooks/useAsync';
-import { useGetSessionsDb } from '../Hooks/useGetSessionsDb';
-
 // components
 import { Container } from '../Styled/Container';
 import DateBlock from './DateBlock';
@@ -33,12 +29,18 @@ const Wrapper = styled(Container)`
 
 //********************************************* */
 const Calendar = () => {
-    const openButton = useOpenButton();
-    const openSelector = useOpenSelector();
-    const getSessions = useGetSessionsDb();
-
+    const {
+        getSessions: { getSessionsDb },
+        selectors: {
+            closeAllSelectors,
+            outsideCinema,
+            outsideSession
+        }
+    } = useContext(Context)
+    // получение времени сеансов
     const asyncTask = async () => {
-        getSessions.getSessionsDb();
+        // getSessions.getSessionsDb();
+        getSessionsDb();
     };
 
     const { execute } = useAsync({
@@ -47,18 +49,16 @@ const Calendar = () => {
 
     useEffect(() => execute(), []);
 
+    // закрытие селекторов по клику мимо них
+    useEffect(() => (outsideCinema && outsideSession) && closeAllSelectors(),
+        [outsideCinema, outsideSession, closeAllSelectors]);
+
     return (
-        <CalendarContext.Provider value={{
-            openButton,
-            openSelector,
-            getSessions
-        }}>
-            <Wrapper>
-                <DateBlock/>
-                <CinemaBlock/>
-                <SessionBlock/>
-            </Wrapper>
-        </CalendarContext.Provider>
+        <Wrapper>
+            <DateBlock/>
+            <CinemaBlock/>
+            <SessionBlock/>
+        </Wrapper>
     )
 };
 export default Calendar;

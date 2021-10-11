@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import SelectButton from './SelectButton';
 
+const Wrapper = styled.div`
+    position: relative;
+    width: 100%;
+`;
 const List = styled.ul`
     display: block;
     position: absolute;
@@ -16,9 +20,7 @@ const List = styled.ul`
     padding: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding-left: 18px;
-    padding-right: 18px;
-    top: 75px;
+    padding: 8px 18px;
 
     &::-webkit-scrollbar {
         width: 10px;
@@ -30,21 +32,38 @@ const List = styled.ul`
     }
 `;
 const Li = styled.li`
-    padding: 8px;
     cursor: pointer;
-    :hover {
+
+    &:not(:last-of-type) {
+        padding-bottom: 8px;
+    }
+
+    &:hover {
         color: ${env.colors.orange};
     }
 `;
 
-const Selector = ({ items, openBtn, handleBtn, openSelector, handleSelector, title }) => (
-        <>
-            <SelectButton  isOpen={openBtn} handle={handleBtn} title={title}/>
-            {openSelector &&
-            <List>
+const Selector = ({ items, isOpen, handleBtn, handleSelector, title, handleOutsideClick }) => {
+    // клик вне компонента
+    const rootEl = useRef(null);
+    useEffect(() => {
+        const onClick = e => {
+            // true, если мимо селектора
+            (!rootEl.current?.contains(e.target) && !e.target.closest('.selector')) && handleOutsideClick();
+        };
+        document.addEventListener('click', onClick);
+        return () => document.removeEventListener('click', onClick);
+    }, [rootEl, handleOutsideClick]);
+
+    return (
+        <Wrapper ref={rootEl} >
+            <SelectButton  isOpen={isOpen} handle={handleBtn} title={title}/>
+            {isOpen &&
+            <List className="selector">
                 {items.map((item, i) => <Li key={i} id={item} onClick={() => handleSelector(item)}>{item}</Li>)}
             </List>
             }
-        </>
-    )
+        </Wrapper>
+    );
+}
 export default Selector;
