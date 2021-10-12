@@ -20,15 +20,8 @@ const LogoLink = styled(Link)`
         -ms-grid-column-span: 2;
             grid-column: 1 / 3;
     } */
-
-    svg: {
-        color: ${env.colors.mainText};
-    }
-
     &:hover {
-        svg {
-            color: ${env.colors.orange};
-        }
+        color: ${env.colors.orange};
     }
 `;
 

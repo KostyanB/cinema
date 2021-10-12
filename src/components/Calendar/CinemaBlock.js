@@ -9,18 +9,30 @@ import Selector from '../Selector';
 const Wrapper = styled.div`
     padding-left: clamp(20px ,7vw, 95px);
 
-    @media (max-width: 1140px) {
+    @media (max-width: 1240px) {
         padding-left: 0px;
-    }
-    @media (max-width: 1024px) {
         grid-row: 2;
     }
+    @media (max-width: 440px) {
+        width: 100%;
+    }
+
+
 `;
 const CinemaWrap = styled.div`
     height: 90px;
     display: flex;
     align-items: center;
     width: 470px;
+    @media (max-width: 768px) {
+        width: 400px;
+    }
+    @media (max-width: 576px) {
+        width: 300px;
+    }
+    @media (max-width: 440px) {
+    }
+
 `;
 //************************************** */
 const CinemaBlock = () => {

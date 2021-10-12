@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 // components
@@ -34,7 +34,7 @@ const Wrapper = styled(Container)`
 `;
 const BackImage = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 814px;
     background: ${props => props.img};
     position: absolute;
     top: 0;
@@ -44,14 +44,18 @@ const BackImage = styled.div`
 
 const Header = () => {
     const {
-        backgroundImg: { backgroundImg }
+        backgroundImg: { backgroundImg, setBackgroundImg },
+        calendar: { activeMovie }
     } = useContext(Context);
 
-    const pageBackground = backgroundImg ? `
+    useEffect(() => {
+        activeMovie || setBackgroundImg('bg.jpg');
+    }, [activeMovie, setBackgroundImg]);
+
+    const pageBackground = `
         linear-gradient(180deg, ${env.colors.gradient} 0%, ${env.colors.brown} 85.62%),
         url(../../db/moviesImg/${backgroundImg}) no-repeat center top / cover;
-        ` :
-        `none`;
+    `;
 
     return (
         <HeaderStyle>

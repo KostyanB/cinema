@@ -10,11 +10,10 @@ const SomePage = () => {
     const location = useLocation();
 
     const {
-        backgroundImg: { setBackgroundImg }
+        calendar: { resetMovie }
     } = useContext(Context);
 
-    useEffect(() => setBackgroundImg(null), [setBackgroundImg]);
-
+    useEffect(() => resetMovie(), [resetMovie]);
 
     return (
         <Container>

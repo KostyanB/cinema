@@ -9,7 +9,7 @@ const Wrapper = styled(Container)`
     display: flex;
     align-items: center;
     padding-bottom: 59px;
-    border-bottom: 1px solid ${env.colors.rectangle};
+    border-bottom: ${env.colors.underline};
 `;
 const Timing = styled.div`
     display: flex;

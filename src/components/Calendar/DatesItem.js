@@ -4,6 +4,7 @@ import env from '../../env.json';
 import { Context } from '../Functions/Context';
 
 const Item = styled.li`
+    align-self: left;
     width: 90px;
     height: 90px;
     border: 1px solid ${env.colors.rectangle};
@@ -22,6 +23,22 @@ const Item = styled.li`
         background-color: ${env.colors.orange};
         color: ${env.colors.brown};
     }
+
+    /* &:not(:last-of-type) { */
+        margin-right: 15px;
+        margin-bottom: 15px
+    /* } */
+
+    /* &:after {
+        content: '';
+        flex-grow: 1;
+    } */
+
+    /* @media (max-width: 440px) {
+        :not(:last-of-type) {
+            margin-right: 5px;
+        }
+    } */
 `;
 const Month = styled.span`
     font-size: ${env.fonts.calendarFonts.label.size};

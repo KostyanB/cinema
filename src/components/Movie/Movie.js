@@ -5,6 +5,8 @@ import { Context } from '../Functions/Context';
 import Details from './Details';
 import FilmInfo from './FilmInfo';
 import Calendar from '../Calendar';
+import Odeum from '../Odeum';
+import Total from '../Total';
 
 const Wrapper = styled.section`
     width: 100vw;
@@ -42,6 +44,8 @@ const Movie = () => {
                     rate={selectMovie.imdbRate}
                 />
                 <Calendar/>
+                <Odeum/>
+                <Total/>
             </Wrapper>
         }
         </>

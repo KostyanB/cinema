@@ -8,11 +8,12 @@ import Selector from '../Selector';
 const Wrapper = styled.div`
     padding-left: clamp(10px ,3vw, 30px);
 
-    @media (max-width: 1140px) {
+    @media (max-width: 1240px) {
         padding-left: 0px;
-    }
-    @media (max-width: 1024px) {
         grid-row: 2;
+    }
+    @media (max-width: 440px) {
+        grid-row: 3;
     }
 `;
 const SessionWrap = styled.div`

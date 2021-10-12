@@ -10,8 +10,11 @@ export const useCalendar = () => {
 
     useEffect(() => setActiveCinema(env.calendar.cinemas[0]), []);
 
+    const resetMovie = () => setActiveMovie(null);
+
     return {
         activeMovie,
+        resetMovie,
         setActiveMovie,
         activeDay,
         setActiveDay,

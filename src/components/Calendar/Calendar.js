@@ -17,9 +17,9 @@ const Wrapper = styled(Container)`
     justify-content: space-between;
     padding-top: 49px;
     padding-bottom: 64px;
-    border-bottom: 1px solid ${env.colors.rectangle};
+    border-bottom: ${env.colors.underline};
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1240px) {
         grid-auto-flow: unset;
         grid-template-columns: max-content max-content;
         row-gap: 20px;

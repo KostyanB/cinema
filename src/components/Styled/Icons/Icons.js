@@ -44,7 +44,7 @@ export const PlayIcon = ({ name = "Смотреть трейлер", width = 100
     </IconStyle>
 )
 
-export const SeatIcon = ({ name = "Кресло", color = env.colors.orange, opacity = "1", width = 38, height = 30 }) => (
+export const SeatIcon = ({ name = "Кресло", color = "currentColor", opacity = "1", width = 38, height = 30 }) => (
     <IconStyle viewBox="0 0 38 30" fill="none" width={width} height={height} x="0px" y="0px">
         <title>{name}</title>
         <rect x="6" width="26" height="23" rx="5" fill={color} fillOpacity={opacity}/>
@@ -62,5 +62,15 @@ export const ScreenLight = ({ name, color = env.colors.screenLight, width = 914,
                 <stop offset="1" stopColor={color} stopOpacity="0"/>
             </linearGradient>
         </defs>
+    </IconStyle>
+)
+
+export const MenuIcon = ({ name = "Меню", color = "currentColor", width = 20, height = 17 }) => (
+    <IconStyle viewBox="0 0 20 17" fill="none" width={width} height={height}>
+        <title>{name}</title>
+        <rect width="20" height="2" fill={color}/>
+        <rect y="15" width="20" height="2" fill={color}/>
+        <rect y="5" width="20" height="2" fill={color}/>
+        <rect y="10" width="20" height="2" fill={color}/>
     </IconStyle>
 )

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Context } from '../Functions/Context';
 import env from '../../env.json';
@@ -27,7 +27,10 @@ const Title = styled.h2`
 const Movies = () => {
     const {
         getMovies: { moviesDb },
+        calendar: { resetMovie }
     } = useContext(Context);
+
+    useEffect(() => resetMovie(), [resetMovie]);
 
     return (
         <Container>
