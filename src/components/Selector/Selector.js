@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
+// import { Context } from '../Functions/Context';
 import SelectButton from './SelectButton';
 
 const Wrapper = styled.div`
@@ -43,7 +44,7 @@ const Li = styled.li`
     }
 `;
 
-const Selector = ({ items, isOpen, handleBtn, handleSelector, title, handleOutsideClick }) => {
+const Selector = ({ items, isOpen, handleBtn, handleSelector, title, handleOutsideClick, type }) => {
     // клик вне компонента
     const rootEl = useRef(null);
     useEffect(() => {

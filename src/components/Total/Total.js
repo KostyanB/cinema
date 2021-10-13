@@ -1,11 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Functions/Context';
 // hooks
 // components
 import { Container } from '../Styled/Container';
-import { ScreenLight, SeatIcon } from '../Styled/Icons/Icons';
 
 const Wrapper = styled(Container)`
     display: flex;
@@ -57,16 +56,37 @@ const PayBtn = styled.button`
 `;
 
 const Total = ({total = 1600}) => {
+    const {
+        calendar: {
+            activeMovie,
+            activeDate,
+            activeCinema,
+            activeSession,
+        },
+        reserved: {
+            reserved,
+        }
+    } = useContext(Context);
+
+    console.log('reserved: ', reserved);
+    const totalSum = reserved.length * env.ticketCost;
 
     const goPay = () =>{
         console.log('you need pay: ', total);
+        console.log('activeSession: ', activeSession);
+        console.log('activeMovie: ', activeMovie);
+        console.log('activeCinema: ', activeCinema);
+        console.log('activeDate: ', activeDate);
+        const {  dayNum, monthName, year } = activeDate;
+        const choiceDate = new Date( year, monthName, dayNum);
+        console.log('choiceDate: ', choiceDate);
     };
 
     return (
         <Wrapper>
             <SumTotal>
                 <span>Всего к оплате</span>
-                <Sum>{total} &#8381;</Sum>
+                <Sum>{totalSum} &#8381;</Sum>
             </SumTotal>
             <PayBtn onClick={goPay}>
                 Перейти к оплате

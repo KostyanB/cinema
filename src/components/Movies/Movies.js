@@ -26,8 +26,12 @@ const Title = styled.h2`
 
 const Movies = () => {
     const {
-        getMovies: { moviesDb },
-        calendar: { resetMovie }
+        getMovies: {
+            moviesDb
+        },
+        calendar: {
+            resetMovie
+        }
     } = useContext(Context);
 
     useEffect(() => resetMovie(), [resetMovie]);

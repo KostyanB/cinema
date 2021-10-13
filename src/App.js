@@ -16,6 +16,7 @@ import { useAsync } from './components/Hooks/useAsync';
 import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
 import { useCalendar } from './components/Hooks/useCalendar';
 import { useSelectors } from './components/Hooks/useSelectors';
+import { useReserved } from './components/Hooks/useReserved';
 
 function App() {
   const getMovies = useGetMoviesDb();
@@ -23,6 +24,7 @@ function App() {
   const backgroundImg = useBackgroundImg();
   const calendar = useCalendar();
   const selectors = useSelectors();
+  const reserved = useReserved();
 
   const asyncTask = async () => {
     getMovies.getMoviesDb();
@@ -41,6 +43,7 @@ function App() {
       backgroundImg,
       calendar,
       selectors,
+      reserved,
     }}>
       <GlobalStyle/>
       <Router>

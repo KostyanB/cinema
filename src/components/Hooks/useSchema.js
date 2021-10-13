@@ -7,8 +7,7 @@ export const useSchema = () => {
     const [ places, setPlaces ] = useState({});
 
     const calcSize = (count, size, padding) => {
-        const blockSize = count * size + count * padding;
-        console.log('blockSize: ', blockSize);
+        const blockSize = count * (size + padding);
         return `${blockSize}px`;
     };
 

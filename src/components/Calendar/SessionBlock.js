@@ -26,11 +26,10 @@ const SessionWrap = styled.div`
 //************************************** */
 const SessionBlock = () => {
     const {
-        getSessions: { sessionsDb },
         calendar: {
-            activeMovie,
             activeSession,
-            setActiveSession
+            setActiveSession,
+            activeMovieDb
         },
         selectors: {
             openSelectorSession,
@@ -41,10 +40,9 @@ const SessionBlock = () => {
             setInsideClick
         }
     } = useContext(Context);
-    //список сеансов для фильма
-    const sessions = sessionsDb && sessionsDb[activeMovie];
 
-    useEffect(() => sessions && setActiveSession(sessions[0]), [sessions, setActiveSession]);
+    useEffect(() => activeMovieDb && setActiveSession(Object.keys(activeMovieDb)[0]), [activeMovieDb]);
+
     // выбор сеанса
     const handleSelectedSession = value => {
         closeSession();
@@ -64,13 +62,15 @@ const SessionBlock = () => {
         <Wrapper>
             <Label>Время</Label>
             <SessionWrap>
-                <Selector items={sessions}
+            {activeMovieDb &&
+                <Selector items={Object.keys(activeMovieDb)}
                     handleSelector={handleSelectedSession}
                     handleBtn={handleSessionSelectors}
                     isOpen={openSelectorSession}
                     title={activeSession}
                     handleOutsideClick={handleOutsideClick}
                 />
+            }
             </SessionWrap>
         </Wrapper>
     )

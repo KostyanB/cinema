@@ -2,12 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Context } from '../Functions/Context';
+// hooks
+import { useAsync } from '../Hooks/useAsync';
+// components
 import Details from './Details';
 import FilmInfo from './FilmInfo';
 import Calendar from '../Calendar';
 import Odeum from '../Odeum';
 import Total from '../Total';
-
+// styled
 const Wrapper = styled.section`
     width: 100vw;
     height: 724px;
@@ -20,18 +23,34 @@ const Movie = () => {
     const {
         getMovies: { moviesObj },
         backgroundImg: { setBackgroundImg },
-        calendar: { setActiveMovie },
+        calendar: { setActiveMovie, setActiveMovieDb },
+        getSessions: { sessionsDb, getSessionsDb },
     } = useContext(Context);
 
     const selectMovie = moviesObj && moviesObj[movie];
-
+    // установка фона и активного фильма
     useEffect(() => {
         if (selectMovie) {
             setBackgroundImg(selectMovie.photo);
-            setActiveMovie(selectMovie.id)
+            setActiveMovie(selectMovie.id);
         }
-    }, [selectMovie, setActiveMovie, setBackgroundImg]);
+        if (sessionsDb) {
+            setActiveMovieDb(sessionsDb[movie]);
 
+        };
+    }, [selectMovie, setActiveMovie, setBackgroundImg, sessionsDb, setActiveMovieDb, movie]);
+
+     // получение времени сеансов
+    const asyncTask = async () => {
+        getSessionsDb();
+    };
+    const { execute } = useAsync({
+        asyncFn: asyncTask
+    });
+    useEffect(() => execute(), []);
+
+
+    //******************************************* */
     return (
         <>
         {selectMovie &&
@@ -49,8 +68,6 @@ const Movie = () => {
             </Wrapper>
         }
         </>
-
-
     );
 }
 export default Movie;

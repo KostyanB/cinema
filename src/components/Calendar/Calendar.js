@@ -2,8 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Functions/Context';
-// hooks
-import { useAsync } from '../Hooks/useAsync';
 // components
 import { Container } from '../Styled/Container';
 import DateBlock from './DateBlock';
@@ -30,24 +28,12 @@ const Wrapper = styled(Container)`
 //********************************************* */
 const Calendar = () => {
     const {
-        getSessions: { getSessionsDb },
         selectors: {
             closeAllSelectors,
             outsideCinema,
             outsideSession
         }
     } = useContext(Context)
-    // получение времени сеансов
-    const asyncTask = async () => {
-        // getSessions.getSessionsDb();
-        getSessionsDb();
-    };
-
-    const { execute } = useAsync({
-        asyncFn: asyncTask
-    });
-
-    useEffect(() => execute(), []);
 
     // закрытие селекторов по клику мимо них
     useEffect(() => (outsideCinema && outsideSession) && closeAllSelectors(),
