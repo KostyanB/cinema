@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import env from '../../env.json';
 
 export const useReserved = () => {
     const [ reserved, setReserved ] = useState([]);
+    const [ total, setTotal ] = useState(0)
 
-    const addReserved = (row, place) => setReserved([...reserved, [row, place]]);
+    useEffect(() => {
+        setReserved([]);
+        setTotal(0);
+    }, []);
+
+    const addReserved = (row, place) => {
+        setTotal((reserved.length + 1) * env.ticketCost);
+        setReserved([...reserved, [row, place]]);
+    };
 
     const delReserved = (row, place) => {
+        setTotal((reserved.length - 1) * env.ticketCost);
         const delPos = reserved.findIndex(item => (item[0] === row && item[1] === place));
         const newReserved = [...reserved.slice(0, delPos), ...reserved.slice(delPos + 1)];
         setReserved(newReserved);
@@ -14,6 +25,8 @@ export const useReserved = () => {
     return {
         reserved,
         addReserved,
-        delReserved
+        delReserved,
+        total,
+        setTotal
     };
 };

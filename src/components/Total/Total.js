@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import env from '../../env.json';
 import { Context } from '../Functions/Context';
 // hooks
@@ -29,7 +30,7 @@ const Sum = styled.div`
     font-size: ${env.fonts.totalFonts.sum.size};
     line-height: ${env.fonts.totalFonts.sum.line};
 `;
-const PayBtn = styled.button`
+const PayBtn = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,40 +56,18 @@ const PayBtn = styled.button`
     }
 `;
 
-const Total = ({total = 1600}) => {
+const Total = () => {
     const {
-        calendar: {
-            activeMovie,
-            activeDate,
-            activeCinema,
-            activeSession,
-        },
-        reserved: {
-            reserved,
-        }
+        reserved: { total }
     } = useContext(Context);
-
-    console.log('reserved: ', reserved);
-    const totalSum = reserved.length * env.ticketCost;
-
-    const goPay = () =>{
-        console.log('you need pay: ', total);
-        console.log('activeSession: ', activeSession);
-        console.log('activeMovie: ', activeMovie);
-        console.log('activeCinema: ', activeCinema);
-        console.log('activeDate: ', activeDate);
-        const {  dayNum, monthName, year } = activeDate;
-        const choiceDate = new Date( year, monthName, dayNum);
-        console.log('choiceDate: ', choiceDate);
-    };
 
     return (
         <Wrapper>
             <SumTotal>
                 <span>Всего к оплате</span>
-                <Sum>{totalSum} &#8381;</Sum>
+                <Sum>{total} &#8381;</Sum>
             </SumTotal>
-            <PayBtn onClick={goPay}>
+            <PayBtn to={`/paypage`}>
                 Перейти к оплате
             </PayBtn>
         </Wrapper>

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
 import SomePage from './components/SomePage';
+import PayPage from './components/PayPage';
 import Page404 from './components/Page404';
 import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
@@ -56,6 +57,7 @@ function App() {
           <Route path="/cinemas" component={SomePage}/>
           <Route path="/events" component={SomePage}/>
           <Route path="/support" component={SomePage}/>
+          <Route path="/paypage" component={PayPage}/>
           <Route component={Page404}/>
         </Switch>
       </Router>
