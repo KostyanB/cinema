@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Context } from './components/Functions/Context';
 import { GlobalStyle } from './components/Styled/GlobalStyle';
@@ -27,21 +27,6 @@ function App() {
   const selectors = useSelectors();
   const reserved = useReserved();
 
-  // moviesData.responce && getMovies.handleMoviesDb(moviesData.responce);
-  // useEffect(() => {
-  // }, []);
-  // console.log(' moviesData.responce: ',  moviesData.responce);
-
-  // const asyncTask = async () => {
-  //   getMovies.getMoviesDb();
-  // };
-
-  // const { loading, error, execute } = useAsync({
-  //   asyncFn: asyncTask,
-  // });
-
-  // useEffect(() => execute(), []);
-
   return (
     <Context.Provider value={{
       getMovies,
@@ -52,9 +37,9 @@ function App() {
       reserved,
     }}>
       <GlobalStyle/>
+      {getMovies.moviesDb &&
       <Router>
       <Header/>
-      {getMovies.moviesDb &&
         <Switch>
           <Route exact path="/" component={Movies}/>
           <Route path="/main" component={SomePage}/>
@@ -66,8 +51,8 @@ function App() {
           <Route path="/paypage" component={PayPage}/>
           <Route component={Page404}/>
         </Switch>
-      }
       </Router>
+      }
       {getMovies.loading && <Preloader/>}
       {getMovies.error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
     </Context.Provider>

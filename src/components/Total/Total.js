@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import env from '../../env.json';
@@ -6,7 +6,15 @@ import { Context } from '../Functions/Context';
 // hooks
 // components
 import { Container } from '../Styled/Container';
+//colors
+const {
+    disable: disableColor,
+    rectangle: activeColor,
+    orange: hoverColor,
+    mainText: mainColor
+} = env.colors;
 
+// styled
 const Wrapper = styled(Container)`
     display: flex;
     align-items: center;
@@ -41,29 +49,56 @@ const PayBtn = styled(Link)`
     align-items: center;
     width: 254px;
     height: 69px;
-    background: ${env.colors.orange};
-    border: 1px solid ${env.colors.orange};
+    background: ${props => (props.disable === 'true') ? disableColor : hoverColor};
+    /* background: ${hoverColor}; */
+    border: 1px solid ${hoverColor};
     border-radius: 5px;
     font-size: ${env.fonts.totalFonts.label.size};
     line-height: ${env.fonts.totalFonts.label.line};
+    pointer-events: ${props => (props.disable === 'true') ? 'none' : 'auto'};
 
     &:hover, :active {
-        color: ${env.colors.orange};
+        /* color: ${props => (props.disable === 'true') ? mainColor : hoverColor}; */
+        color: ${hoverColor};
     }
 
     &:hover {
-        background: ${env.colors.mainText}
+        /* background: ${props => (props.disable === 'true') ? disableColor : mainColor}; */
+        background: ${mainColor};
     }
 
     &:active {
-        background: ${env.colors.rectangle}
+        /* background: ${props => (props.disable === 'true') ? disableColor : activeColor}; */
+        background: ${activeColor};
     }
 `;
 
 const Total = () => {
+    const [ disable, setDisable ] = useState(true);
     const {
-        reserved: { total }
+        reserved: {
+            total,
+            reserved
+        },
+        calendar: {
+            activeDate,
+            activeCinema,
+            activeSession
+        }
     } = useContext(Context);
+
+    useEffect(() => {
+        if (activeDate && activeSession && activeCinema && reserved.length) {
+            setDisable(false);
+        } else if (activeDate || activeSession || activeCinema || reserved.length) {
+            setDisable(true);
+        }
+    }, [
+        activeDate,
+        activeSession,
+        activeCinema,
+        reserved.length
+    ]);
 
     return (
         <Wrapper>
@@ -71,7 +106,7 @@ const Total = () => {
                 <span>Всего к оплате</span>
                 <Sum>{total} &#8381;</Sum>
             </SumTotal>
-            <PayBtn to={`/paypage`}>
+            <PayBtn disable={`${disable}`} to={'/paypage'}>
                 Перейти к оплате
             </PayBtn>
         </Wrapper>

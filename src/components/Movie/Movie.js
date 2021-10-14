@@ -11,6 +11,7 @@ import Calendar from '../Calendar';
 import Odeum from '../Odeum';
 import Total from '../Total';
 import { ErrorLoad, Preloader } from '../Styled/Preloader';
+import Page404 from '../Page404';
 // styled
 const Wrapper = styled.section`
     width: 100vw;
@@ -74,6 +75,7 @@ const Movie = () => {
         }
         {loading && <Preloader/>}
         {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+        {moviesObj && !(movie in moviesObj) && <Page404/>}
         </>
     );
 }
