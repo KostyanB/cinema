@@ -10,9 +10,12 @@ const Item = styled.li`
     }
 `;
 
-const NavItem = ({ src, text }) => (
+const NavItem = ({ src, text, handle }) => (
     <Item>
-        <NavLink to={`/${src}`} activeClassName="active">
+        <NavLink to={`/${src}`}
+            activeClassName="active"
+            onClick={handle}
+        >
             {text}
         </NavLink>
     </Item>

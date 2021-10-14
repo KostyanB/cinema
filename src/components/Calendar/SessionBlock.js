@@ -10,10 +10,13 @@ const Wrapper = styled.div`
 
     @media (max-width: 1240px) {
         padding-left: 0px;
-        grid-row: 2;
+        order: 2;
+    }
+    @media (max-width: 576px) {
+        order: unset;
     }
     @media (max-width: 440px) {
-        grid-row: 3;
+        margin-top: 40px;
     }
 `;
 const SessionWrap = styled.div`

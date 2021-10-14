@@ -11,29 +11,26 @@ const Wrapper = styled.div`
 
     @media (max-width: 1240px) {
         padding-left: 0px;
-        grid-row: 2;
+        order: 3;
+    }
+    @media (max-width: 576px) {
+        order: unset;
     }
     @media (max-width: 440px) {
         width: 100%;
     }
-
-
 `;
 const CinemaWrap = styled.div`
     height: 90px;
     display: flex;
     align-items: center;
     width: 470px;
-    @media (max-width: 768px) {
-        width: 400px;
-    }
+
     @media (max-width: 576px) {
         width: 300px;
     }
-    @media (max-width: 440px) {
-    }
-
 `;
+
 //************************************** */
 const CinemaBlock = () => {
     const cinemas = env.calendar.cinemas;

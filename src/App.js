@@ -18,7 +18,6 @@ import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
 import { useCalendar } from './components/Hooks/useCalendar';
 import { useSelectors } from './components/Hooks/useSelectors';
 import { useReserved } from './components/Hooks/useReserved';
-// import {  useFetch } from './components/Hooks/useFetch';
 
 function App() {
   const getMovies = useGetMoviesDb();
@@ -27,7 +26,6 @@ function App() {
   const calendar = useCalendar();
   const selectors = useSelectors();
   const reserved = useReserved();
-  // const moviesData = useFetch();
 
   // moviesData.responce && getMovies.handleMoviesDb(moviesData.responce);
   // useEffect(() => {

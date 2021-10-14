@@ -14,22 +14,22 @@ const HeaderStyle = styled.header`
 `;
 const Wrapper = styled(Container)`
     position: relative;
-    display: -ms-grid;
-    display: grid;
+    display: -ms-flex;
+    display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
         align-items: center;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    grid-template-columns: 30px 1fr max-content;
+    /* grid-template-columns: 30px 1fr max-content; */
     height: max-content;
     padding-top: 30px;
     padding-bottom: 30px;
 
     @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 10px;
+        /* grid-template-columns: repeat(2, 1fr); */
+        /* row-gap: 10px; */
     }
 `;
 const BackImage = styled.div`

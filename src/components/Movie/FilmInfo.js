@@ -8,8 +8,17 @@ const Film = styled(Container)`
     display: flex;
     align-items: center;
 
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
     div {
         max-width: 570px;
+
+        @media (max-width: 768px) {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
     }
 `;
 const Title = styled.h1`
@@ -27,9 +36,18 @@ const Description = styled.p`
     font-size: ${env.fonts.mainFont.size};
     line-height: ${env.fonts.mainFont.line};
     margin-bottom: 51px;
+
+    @media (max-width: 768px) {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
 `;
 const Trailer = styled.a`
     margin: auto;
+
+    @media (max-width: 768px) {
+        margin-bottom: 20px;
+    }
 `;
 
 const FilmInfo = ({ subtitle, title, description }) => (

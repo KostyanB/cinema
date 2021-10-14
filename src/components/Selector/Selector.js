@@ -44,24 +44,41 @@ const Li = styled.li`
     }
 `;
 
-const Selector = ({ items, isOpen, handleBtn, handleSelector, title, handleOutsideClick, type }) => {
+const Selector = ({
+    items,
+    isOpen,
+    handleBtn,
+    handleSelector,
+    title,
+    handleOutsideClick
+}) => {
     // клик вне компонента
     const rootEl = useRef(null);
     useEffect(() => {
         const onClick = e => {
             // true, если мимо селектора
-            (!rootEl.current?.contains(e.target) && !e.target.closest('.selector')) && handleOutsideClick();
+            (!rootEl.current?.contains(e.target)
+                && !e.target.closest('.selector'))
+                    && handleOutsideClick();
         };
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
     }, [rootEl, handleOutsideClick]);
 
     return (
-        <Wrapper ref={rootEl} >
-            <SelectButton  isOpen={isOpen} handle={handleBtn} title={title}/>
+        <Wrapper ref={rootEl}>
+            <SelectButton  isOpen={isOpen}
+                handle={handleBtn}
+                title={title}
+            />
             {isOpen &&
             <List className="selector">
-                {items.map((item, i) => <Li key={i} id={item} onClick={() => handleSelector(item)}>{item}</Li>)}
+                {items.map((item, i) =>
+                    <Li key={i}
+                        id={item}
+                        onClick={() => handleSelector(item)}
+                    >{item}</Li>
+                )}
             </List>
             }
         </Wrapper>

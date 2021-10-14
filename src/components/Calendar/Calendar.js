@@ -9,19 +9,25 @@ import CinemaBlock from './CinemaBlock';
 import SessionBlock from './SessionBlock';
 // styled
 const Wrapper = styled(Container)`
-    display: grid;
+    /* display: grid;
     grid-auto-flow: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
     padding-top: 49px;
     padding-bottom: 64px;
     border-bottom: ${env.colors.underline};
 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+
     @media (max-width: 1240px) {
-        grid-auto-flow: unset;
-        grid-template-columns: max-content max-content;
-        row-gap: 20px;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+        /* grid-auto-flow: unset; */
+        /* grid-template-columns: max-content max-content; */
+        /* row-gap: 20px; */
+        /* justify-content: space-evenly; */
     }
 `;
 

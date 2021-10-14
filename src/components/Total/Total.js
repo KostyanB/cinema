@@ -14,8 +14,10 @@ const Wrapper = styled(Container)`
     padding-top: 64px;
     padding-bottom: 158px;
 
-    @media (max-width: 1024px) {
-
+    @media (max-width: 440px) {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 30px;
     }
 `;
 const SumTotal = styled.div`
@@ -25,6 +27,9 @@ const SumTotal = styled.div`
     flex-direction: column;
     font-size: ${env.fonts.totalFonts.label.size};
     line-height: ${env.fonts.totalFonts.label.line};
+    @media (max-width: 440px) {
+        align-items: center;
+    }
 `;
 const Sum = styled.div`
     font-size: ${env.fonts.totalFonts.sum.size};

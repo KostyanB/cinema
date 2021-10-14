@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 // components
-import NavItem from '../Styled/NavItem';
+import NavItem from './NavItem';
+import { MenuIcon } from '../Styled/Icons/Icons';
 
-const Nav = styled.nav`
-    justify-self: left;
-    margin-left: 57px;
+const Wrapper = styled.nav`
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+`;
+const Nav = styled.ul`
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -15,38 +19,71 @@ const Nav = styled.nav`
     gap: 25px;
 
     @media (max-width: 768px) {
-        justify-self: auto;
-        margin-left: 0px;
-        -ms-grid-column: 1;
-            -ms-grid-column-span: 2;
-                grid-column: 1 / 3;
-        justify-content: space-between;
-        gap: clamp(1%, 25px, 20%);
+        position: absolute;
+        top: 40px;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 10px;
+        background-color: ${env.colors.brown};
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 101;
+        visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+        transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
+        opacity: ${props => props.isOpen ? 1 : 0};
+        transition: opacity 0.3s;
+    }
+`;
+const MenuBtn = styled.button`
+    display: none;
+    width: 30px;
+    height: 30px;
+    color: ${env.colors.mainText};
+
+    &:hover , :active {
+        color: ${env.colors.orange};
     }
 
-    @media (max-width: 576px) {
-        flex-wrap: wrap;
-        /* -ms-grid-column: 1;
-        -ms-grid-column-span: 1;
-            grid-column: 1 / 2; */
+    @media (max-width: 768px) {
+        display: block;
     }
-
-    /* @media (max-width: 576px) {
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
-            grid-column: 1 / 3;
-    } */
 `;
 
 const NavBar = () =>{
     const navArr = Object.entries(env.headNav);
+    const [ isOpen, setIsOpen ] = useState(false);
+
+    const toggleMenu = () => setIsOpen(!isOpen);
+
+    // клик вне компонента
+    const rootEl = useRef(null);
+    useEffect(() => {
+        const onClick = e => {
+            // true, если мимо селектора
+            (!rootEl.current?.contains(e.target)
+                && !e.target.closest('.selector'))
+                    && setIsOpen(false);
+        };
+        document.addEventListener('click', onClick);
+        return () => document.removeEventListener('click', onClick);
+    }, [rootEl, setIsOpen]);
 
     return (
-        <Nav>
-            {navArr.map((item, key) => (
-                <NavItem key={key} src={item[0]} text={item[1]}/>
-            ))}
-        </Nav>
+        <Wrapper  ref={rootEl}>
+            <MenuBtn onClick={toggleMenu}>
+                <MenuIcon width={30} height={25.5}/>
+            </MenuBtn>
+            <Nav isOpen={isOpen}>
+                {navArr.map((item, key) => (
+                    <NavItem key={key}
+                        src={item[0]}
+                        text={item[1]}
+                        handle={toggleMenu}
+                    />
+                ))}
+            </Nav>
+        </Wrapper>
+
     );
 }
 export default NavBar;

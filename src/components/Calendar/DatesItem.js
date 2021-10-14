@@ -18,27 +18,15 @@ const Item = styled.li`
     padding-top: 9px;
     transition: background-color 0.2s;
     cursor: pointer;
+    margin-bottom: 15px;
+    &:not(:last-of-type) {
+        margin-right: 15px;
+    }
 
     &:hover, :active {
         background-color: ${env.colors.orange};
         color: ${env.colors.brown};
     }
-
-    /* &:not(:last-of-type) { */
-        margin-right: 15px;
-        margin-bottom: 15px
-    /* } */
-
-    /* &:after {
-        content: '';
-        flex-grow: 1;
-    } */
-
-    /* @media (max-width: 440px) {
-        :not(:last-of-type) {
-            margin-right: 5px;
-        }
-    } */
 `;
 const Month = styled.span`
     font-size: ${env.fonts.calendarFonts.label.size};

@@ -39,22 +39,9 @@ const SomePage = () => {
         }
     } = useContext(Context);
 
-    // const formatDate = () => {
-    //     const options = {
-    //         year: 'numeric',
-    //         month: 'long',
-    //         day: 'numeric',
-    //         weekday: 'long',
-    //     };
-    //     const str = activeDate.date.toLocaleString("ru", options);
-    //     const formattedStr = str.charAt(0).toUpperCase() + str.substr(1);
-    //     return formattedStr;
-    // };
-
     const formatPlaces = () => reserved.reverse()
         .reduce((acc, item) => acc += ` ряд ${item[0]} место ${item[1]},`, '')
         .slice(0, -1);
-
 
     return (
         <Container>

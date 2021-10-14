@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     /* border-top: ${underline}; */
     display: flex;
     align-items: center;
-    width: 1018px;
+    width: 95%;
     margin: 0 auto;
 
     span {
@@ -22,10 +22,6 @@ const Wrapper = styled.div`
     }
     span:not(:last-of-type) {
         margin-right: 30px;
-    }
-
-    @media (max-width: 1240px) {
-        /* width: 95%; */
     }
 `;
 
