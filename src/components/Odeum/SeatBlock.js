@@ -50,9 +50,9 @@ const SeatBlock = () => {
             activeMovieDb,
             activeSession,
         },
-        reserved: {
-            addReserved
-        }
+        // reserved: {
+        //     addReserved
+        // }
     } = useContext(Context);
     // настройки рядов
     const {
@@ -82,7 +82,7 @@ const SeatBlock = () => {
 
     return (
         <>
-        {activeSession &&
+        {/* {activeSession && */}
             <>
                 <FrontBlock >
                     <BigSeatBlock width={frontWidth} height={frontHeight}>
@@ -119,7 +119,7 @@ const SeatBlock = () => {
                     </SmallSeatBlock>
                 </BackBlock>
             </>
-        }
+        {/* } */}
         </>
     );
 }

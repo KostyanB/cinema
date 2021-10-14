@@ -13,11 +13,12 @@ import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
 import { useGetMoviesDb } from './components/Hooks/useGetMoviesDb';
 import { useGetSessionsDb } from './components/Hooks/useGetSessionsDb';
-import { useAsync } from './components/Hooks/useAsync';
+// import { useAsync } from './components/Hooks/useAsync';
 import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
 import { useCalendar } from './components/Hooks/useCalendar';
 import { useSelectors } from './components/Hooks/useSelectors';
 import { useReserved } from './components/Hooks/useReserved';
+// import {  useFetch } from './components/Hooks/useFetch';
 
 function App() {
   const getMovies = useGetMoviesDb();
@@ -26,16 +27,22 @@ function App() {
   const calendar = useCalendar();
   const selectors = useSelectors();
   const reserved = useReserved();
+  // const moviesData = useFetch();
 
-  const asyncTask = async () => {
-    getMovies.getMoviesDb();
-  };
+  // moviesData.responce && getMovies.handleMoviesDb(moviesData.responce);
+  // useEffect(() => {
+  // }, []);
+  // console.log(' moviesData.responce: ',  moviesData.responce);
 
-  const { loading, error, execute } = useAsync({
-    asyncFn: asyncTask,
-  });
+  // const asyncTask = async () => {
+  //   getMovies.getMoviesDb();
+  // };
 
-  useEffect(() => execute(), []);
+  // const { loading, error, execute } = useAsync({
+  //   asyncFn: asyncTask,
+  // });
+
+  // useEffect(() => execute(), []);
 
   return (
     <Context.Provider value={{
@@ -49,6 +56,7 @@ function App() {
       <GlobalStyle/>
       <Router>
       <Header/>
+      {getMovies.moviesDb &&
         <Switch>
           <Route exact path="/" component={Movies}/>
           <Route path="/main" component={SomePage}/>
@@ -60,9 +68,10 @@ function App() {
           <Route path="/paypage" component={PayPage}/>
           <Route component={Page404}/>
         </Switch>
+      }
       </Router>
-      {loading && <Preloader/>}
-      {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+      {getMovies.loading && <Preloader/>}
+      {getMovies.error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
     </Context.Provider>
   );
 }

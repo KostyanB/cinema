@@ -27,6 +27,5 @@ export const useReserved = () => {
         addReserved,
         delReserved,
         total,
-        setTotal
     };
 };

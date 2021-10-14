@@ -34,7 +34,6 @@ const PayBtn = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px 52px;
     width: 254px;
     height: 69px;
     background: ${env.colors.orange};

@@ -1,4 +1,4 @@
-// массив x*y
+// массив y*x
 const createArr = (...args) => {
     let arr = [];
     const [ yStart, yEnd, xStart, xEnd ] = args;

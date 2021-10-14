@@ -39,7 +39,7 @@ const Movies = () => {
     return (
         <Container>
             <Title>Выберите фильм</Title>
-            {moviesDb && moviesDb.map(item =>
+            {moviesDb.map(item =>
                 <MovieLink to={`/movie/${item.id}`} key={item.id}>{item.ruTitle}</MovieLink>
             )}
         </Container>
