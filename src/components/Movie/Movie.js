@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Context } from '../Functions/Context';
 // hooks
-// import { useAsync } from '../Hooks/useAsync';
+
 // components
 import Details from './Details';
 import FilmInfo from './FilmInfo';
@@ -46,15 +46,6 @@ const Movie = () => {
         setActiveMovieDb,
         movie
     ]);
-
-     // получение времени сеансов
-    // const asyncTask = async () => {
-    //     getSessionsDb();
-    // };
-    // const { execute, loading, error } = useAsync({
-    //     asyncFn: asyncTask
-    // });
-    // useEffect(() => execute(), []);
 
     //******************************************* */
     return (

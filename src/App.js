@@ -13,7 +13,6 @@ import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
 import { useGetMoviesDb } from './components/Hooks/useGetMoviesDb';
 import { useGetSessionsDb } from './components/Hooks/useGetSessionsDb';
-// import { useAsync } from './components/Hooks/useAsync';
 import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
 import { useCalendar } from './components/Hooks/useCalendar';
 import { useSelectors } from './components/Hooks/useSelectors';

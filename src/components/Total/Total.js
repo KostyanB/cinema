@@ -88,11 +88,9 @@ const Total = () => {
     } = useContext(Context);
 
     useEffect(() => {
-        if (activeDate && activeSession && activeCinema && reserved.length) {
-            setDisable(false);
-        } else if (activeDate || activeSession || activeCinema || reserved.length) {
-            setDisable(true);
-        }
+        const checkArr = [activeDate, activeSession, activeCinema, reserved.length];
+        checkArr.every(item => item) && setDisable(false);
+        checkArr.some(item => !item) && setDisable(true);
     }, [
         activeDate,
         activeSession,

@@ -26,6 +26,7 @@ const Place = ({ name, row, place, booked }) => {
     const [ isReserved, setIsReserved ] = useState(false);
     const {
         reserved: {
+            reserved,
             addReserved,
             delReserved
         }

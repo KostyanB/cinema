@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import env from '../../env.json';
-import getDateArr from '../Functions/getDateArr';
+import { Context } from '../Functions/Context';
+
 import Label from './Label';
 import DatesItem from './DatesItem';
 
@@ -31,7 +31,9 @@ const Items = styled.ul`
 `;
 
 const DateBlock = () => {
-    const dateArr = getDateArr(env.calendar.showPeriod);
+    const {
+        calendar: { dateArr },
+    } = useContext(Context);
 
     return (
         <Wrapper>
