@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
+import { Context } from '../Context';
 // components
-import { Context } from '../Functions/Context';
 import { Container } from '../Styled/Container';
 import MainLink from './MainLink';
 import NavBar from './NavBar';
@@ -22,15 +22,9 @@ const Wrapper = styled(Container)`
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    /* grid-template-columns: 30px 1fr max-content; */
     height: max-content;
     padding-top: 30px;
     padding-bottom: 30px;
-
-    @media (max-width: 768px) {
-        /* grid-template-columns: repeat(2, 1fr); */
-        /* row-gap: 10px; */
-    }
 `;
 const BackImage = styled.div`
     width: 100vw;
@@ -47,13 +41,14 @@ const Header = () => {
         backgroundImg: { backgroundImg, setBackgroundImg },
         calendar: { activeMovie }
     } = useContext(Context);
+    const { gradient, brown } = env.colors;
 
     useEffect(() => {
         activeMovie || setBackgroundImg('bg.jpg');
     }, [activeMovie, setBackgroundImg]);
 
     const pageBackground = `
-        linear-gradient(180deg, ${env.colors.gradient} 0%, ${env.colors.brown} 85.62%),
+        linear-gradient(180deg, ${gradient} 0%, ${brown} 85.62%),
         url(../../db/moviesImg/${backgroundImg}) no-repeat center top / cover;
     `;
 

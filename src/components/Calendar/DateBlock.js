@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Context } from '../Functions/Context';
-
+import { Context } from '../Context';
 import Label from './Label';
 import DatesItem from './DatesItem';
 

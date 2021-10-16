@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import screen from '../../img/screen.svg';
-// import { Context } from '../Functions/Context';
-// hooks
 // components
 import { Container } from '../Styled/Container';
 import SeatBlock from './SeatBlock';
 import Legend from './Legend';
-
+//env
+const { auditorium, free, scroll } = env.colors;
+// styled
 const Wrapper = styled(Container)`
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@ const Wrapper = styled(Container)`
     flex-direction: column;
     margin-top: 61px;
     padding: 50px 70px 64px;
-    background: ${env.colors.auditorium};
+    background: ${auditorium};
     border-radius: 10px;
     overflow-x: auto;
     &::-webkit-scrollbar {
@@ -24,7 +24,7 @@ const Wrapper = styled(Container)`
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: ${env.colors.free};
+        background-color: ${free};
         border-radius: 100px;
     }
 
@@ -36,7 +36,7 @@ const Screen = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto 21px;
-    border-top: 5px solid ${env.colors.scroll};
+    border-top: 5px solid ${scroll};
     border-radius: 3px;
     width: 1018px;
 
@@ -46,48 +46,8 @@ const Screen = styled.div`
         top: 3px;
     }
 `;
-// const SeatBlock = styled.div`
-//     width: 1024px;
-//     height: 226px;
-//     margin: 0 auto;
-//     padding-bottom: 50px;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
 
-//     &:nth-of-type(3) {
-//         border-bottom: ${env.colors.underline};
-//     }
-
-//     @media (max-width: 1240px) {
-//         justify-content: center;
-//     }
-// `;
-// const BigBlock = styled.div`
-//     width: 910px;
-//     height: 100%;
-//     background: gray;
-//     margin: 0 auto;
-// `;
-// const SmallBlock = styled.div`
-//     width: 472px;
-//     height: 100%;
-//     background: gray;
-//     margin: 0 auto;
-
-//     @media (max-width: 1240px) {
-//         &:first-of-type {
-//             margin-right: 5px;
-//         }
-//     }
-// `;
-
-
-
-
-const Odeum = () => {
-
-    return (
+const Odeum = () => (
         <Wrapper>
             <Screen>
                 <img src={screen} alt=""/>
@@ -95,6 +55,5 @@ const Odeum = () => {
             <SeatBlock/>
             <Legend/>
         </Wrapper>
-    );
-}
+);
 export default Odeum;

@@ -10,11 +10,11 @@ const Item = styled.li`
     }
 `;
 
-const NavItem = ({ src, text, handle }) => (
+const NavItem = ({ src, text, toggleMenu }) => (
     <Item>
         <NavLink to={`/${src}`}
             activeClassName="active"
-            onClick={handle}
+            onClick={toggleMenu}
         >
             {text}
         </NavLink>

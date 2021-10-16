@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import userImg from '../../img/user.jpg';
-
+// env
+const { size, line } = env.fonts.calendarFonts.label;
+// styled
 const Wrapper = styled.div`
     width: max-content;
     height: 100%;
@@ -20,8 +22,8 @@ const Wrapper = styled.div`
     }
 `;
 const UserName = styled.p`
-    font-size: ${env.fonts.calendarFonts.label.size};
-    line-height: ${env.fonts.calendarFonts.label.size};
+    font-size: ${size};
+    line-height: ${line};
 `;
 const Button = styled.button`
     background: url(${userImg});

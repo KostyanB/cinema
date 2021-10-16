@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context } from '../Functions/Context';
+import { Context } from '../Context';
+
+const { orange, brown, rectangle } = env.colors;
+const { label: labelFont, date: dateFont, day: dayFont } = env.fonts.calendarFonts;
 
 const Item = styled.li`
     align-self: left;
     width: 90px;
     height: 90px;
-    border: 1px solid ${env.colors.rectangle};
+    border: 1px solid ${rectangle};
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
@@ -24,22 +27,22 @@ const Item = styled.li`
     }
 
     &:hover, :active {
-        background-color: ${env.colors.orange};
-        color: ${env.colors.brown};
+        background-color: ${orange};
+        color: ${brown};
     }
 `;
 const Month = styled.span`
-    font-size: ${env.fonts.calendarFonts.label.size};
-    line-height: ${env.fonts.calendarFonts.label.line};
+    font-size: ${labelFont.size};
+    line-height: ${labelFont.line};
 `;
 const Day = styled.span`
-    font-size: ${env.fonts.calendarFonts.date.size};
-    line-height: ${env.fonts.calendarFonts.date.line};
+    font-size: ${dateFont.size};
+    line-height: ${dateFont.line};
     font-weight: 900;
 `;
 const WeekDay = styled.span`
-    font-size: ${env.fonts.calendarFonts.day.size};
-    line-height: ${env.fonts.calendarFonts.day.line};
+    font-size: ${dayFont.size};
+    line-height: ${dayFont.line};
 `;
 
 const DatesItem = ({ dateParam }) => {
@@ -50,8 +53,8 @@ const DatesItem = ({ dateParam }) => {
     } = useContext(Context);
 
     const activeStyle = (dayNum === activeDate?.dayNum) ? {
-        backgroundColor: env.colors.orange,
-        color: env.colors.brown
+        backgroundColor: orange,
+        color: brown
     } : {};
 
     const hanleActiveDay = () => {

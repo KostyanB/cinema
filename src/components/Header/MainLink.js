@@ -15,11 +15,6 @@ const LogoLink = styled(Link)`
             grid-row: 1;
     }
 
-    /* @media (max-width: 576px) {
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
-            grid-column: 1 / 3;
-    } */
     &:hover {
         color: ${env.colors.orange};
     }

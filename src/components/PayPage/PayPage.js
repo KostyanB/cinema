@@ -1,28 +1,29 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import env from '../../env.json';
-import { Context } from '../Functions/Context';
-import { formatDate } from '../Functions/formatDate';
-import { declOfNum } from '../Functions/declOfNum';
+import { Context } from '../Context';
+import { formatDate } from '../../functions/formatDate';
+import { declOfNum } from '../../functions/declOfNum';
 // components
 import { Container } from '../Styled/Container';
-
+//env
+import env from '../../env.json';
+const { size: subSize, line: subLine } = env.fonts.mainFonts.subtitle;
+const { size: mainSize, line: mainLine } = env.fonts.mainFont;
+//styled
 const Title = styled.h2`
-    font-size: ${env.fonts.mainFonts.subtitle.size};
-    line-height: ${env.fonts.mainFonts.subtitle.line};
+    font-size: ${subSize};
+    line-height: ${subLine};
     margin-bottom: 15px;
 `;
 const Text = styled.p`
-    font-size: ${env.fonts.mainFont.size};
-    line-height: ${env.fonts.mainFont.line};
+    font-size: ${mainSize};
+    line-height: ${mainLine};
     &:not(:last-of-type) {
         margin-bottom: 10px;
     }
-
 `;
 
-const SomePage = () => {
-
+const PayPage = () => {
     const {
         calendar: {
             activeMovie,
@@ -55,4 +56,4 @@ const SomePage = () => {
         </Container>
     );
 }
-export default SomePage;
+export default PayPage;

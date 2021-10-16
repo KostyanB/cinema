@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import env from '../../env.json';
-import { Context } from '../Functions/Context';
-// hooks
+import { Context } from '../Context';
 // components
 import { Container } from '../Styled/Container';
 //colors

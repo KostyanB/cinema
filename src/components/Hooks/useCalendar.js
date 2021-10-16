@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import env from '../../env.json';
-import getDateArr from '../Functions/getDateArr';
+import getDateArr from '../../functions/getDateArr';
 
 export const useCalendar = () => {
     const [ dateArr, setDateArr ] = useState(null);

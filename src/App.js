@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Context } from './components/Functions/Context';
 import { GlobalStyle } from './components/Styled/GlobalStyle';
+import { ContextProvider } from './components/Context';
 // components
 import Header from './components/Header';
 import Movies from './components/Movies';
@@ -12,31 +12,14 @@ import Page404 from './components/Page404';
 import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
 import { useGetMoviesDb } from './components/Hooks/useGetMoviesDb';
-import { useGetSessionsDb } from './components/Hooks/useGetSessionsDb';
-import { useBackgroundImg } from './components/Hooks/useBackgroundImg';
-import { useCalendar } from './components/Hooks/useCalendar';
-import { useSelectors } from './components/Hooks/useSelectors';
-import { useReserved } from './components/Hooks/useReserved';
 
 function App() {
-  const getMovies = useGetMoviesDb();
-  const getSessions = useGetSessionsDb();
-  const backgroundImg = useBackgroundImg();
-  const calendar = useCalendar();
-  const selectors = useSelectors();
-  const reserved = useReserved();
+  const { moviesDb, error, loading } = useGetMoviesDb();
 
   return (
-    <Context.Provider value={{
-      getMovies,
-      getSessions,
-      backgroundImg,
-      calendar,
-      selectors,
-      reserved,
-    }}>
+    <ContextProvider>
       <GlobalStyle/>
-      {getMovies.moviesDb &&
+      {moviesDb &&
       <Router>
       <Header/>
         <Switch>
@@ -52,10 +35,9 @@ function App() {
         </Switch>
       </Router>
       }
-      {getMovies.loading && <Preloader/>}
-      {getMovies.error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
-    </Context.Provider>
+      {loading && <Preloader/>}
+      {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+    </ContextProvider>
   );
 }
-
 export default App;

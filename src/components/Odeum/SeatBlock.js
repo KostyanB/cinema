@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context } from '../Functions/Context';
+import { Context } from '../Context';
 import { useSchema } from '../Hooks/useSchema';
 import Place from './Place';
 
@@ -44,16 +44,13 @@ const SmallSeatBlock = styled(BigSeatBlock)`
 
 //******************************************* */
 const SeatBlock = () => {
-    const { sizes, places } = useSchema();
     const {
         calendar: {
             activeMovieDb,
             activeSession,
         },
-        // reserved: {
-        //     addReserved
-        // }
     } = useContext(Context);
+    const { sizes, places } = useSchema();
     // настройки рядов
     const {
         frontHeight,

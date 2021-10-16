@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+//env
 import env from '../../env.json';
-
+const { selectorFill: background, rectangle: border, orange, mainText: white } = env.colors;
+//styled
 const Button = styled.button`
     position: relative;
     padding: 8px 24px;
     text-align: left;
-    background-color: ${env.colors.selectorFill};
+    background-color: ${background};
     width: 100%;
     height: 60px;
-    border: 1px solid ${env.colors.rectangle};
+    border: 1px solid ${border};
     border-radius: 5px;
     &:after {
         content: '';
@@ -23,7 +25,7 @@ const Button = styled.button`
             -ms-transform: translateY(-50%) rotate(-45deg);
                 transform: translateY(-50%) rotate(-45deg);
         border-style: solid;
-        border-color: transparent transparent ${env.colors.mainText} ${env.colors.mainText};
+        border-color: transparent transparent ${white} ${white};
         border-width: 1px;
         z-index: 1;
         -webkit-transition: border-color 0.2s ease-in-out, margin-top 0.2s ease-in-out;
@@ -31,26 +33,26 @@ const Button = styled.button`
         transition: border-color 0.2s ease-in-out, margin-top 0.2s ease-in-out;
     }
     &:hover {
-        color: ${env.colors.orange};
+        color: ${orange};
         cursor: pointer;
     }
 
     ${(props) => props.isOpen};
 `;
 
-const SelectButton = ({ isOpen, title, handle }) => {
+const SelectButton = ({ isOpen, title, handleFn }) => {
     const openBtnStyle = `
-        border-bottom-color: ${env.colors.orange};
+        border-bottom-color: ${orange};
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         &:after {
             margin-top: 6px;
-            border-color: ${env.colors.orange} ${env.colors.orange} transparent transparent;
+            border-color: ${orange} ${orange} transparent transparent;
         }
     `;
 
     return (
-        <Button isOpen={isOpen && openBtnStyle} onClick={handle}>{title}</Button>
+        <Button isOpen={isOpen && openBtnStyle} onClick={handleFn}>{title}</Button>
     )
 };
 export default SelectButton;

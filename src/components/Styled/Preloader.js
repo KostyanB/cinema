@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import env from '../../env.json';
+const { loadWrap, brown, orange, red } = env.colors;
 
 const LoadWrap = styled.div`
   position: fixed;
@@ -8,13 +9,13 @@ const LoadWrap = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  background: ${env.colors.loadWrap};
+  background: ${loadWrap};
   z-index: 1001;
   height: 100vh;
 `;
 export const ErrorLoad = styled(LoadWrap)`
   padding-top: 200px;
-  color: ${env.colors.red};
+  color: ${red};
   font-size: 30px;
   text-align: center;
 `;
@@ -30,9 +31,9 @@ const Dash = styled.div`
   width: 60px;
   height: 40px;
   border-radius: 15px;
-  background: ${env.colors.brown};
+  background: ${brown};
   text-align: center;
-  color: ${env.colors.orange};
+  color: ${orange};
   font-weight: 800;
   font-size: 30px;
   line-height: 40px;

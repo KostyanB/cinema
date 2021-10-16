@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import env from '../../env.json';
+const { brown, scroll } = env.colors;
+const { size, line } = env.fonts.mainFont;
 
 export const GlobalStyle = createGlobalStyle `
     /****************** fonts ************************ */
@@ -30,7 +32,7 @@ export const GlobalStyle = createGlobalStyle `
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: ${env.colors.scroll};
+            background-color: ${scroll};
             border-radius: 100px;
         }
     }
@@ -46,10 +48,10 @@ export const GlobalStyle = createGlobalStyle `
         min-width: 320px;
         min-height: 100vh;
         margin: 0;
-        background-color: ${env.colors.brown};
+        background-color: ${brown};
         font-family: "Roboto", Arial, sans-serif;
-        font-size: ${env.fonts.mainFont.size};
-        line-height: ${env.fonts.mainFont.line}
+        font-size: ${size};
+        line-height: ${line}
         font-weight: 400;
         color: ${env.colors.mainText};
         overflow-x: hidden;
@@ -310,20 +312,5 @@ export const GlobalStyle = createGlobalStyle `
     th {
         text-align: left;
         font-weight: bold;
-    }
-    /* ******************************** */
-
-    .invalid {
-        color: #f93c00;
-    }
-
-    .footer__column-item {
-        margin-bottom: 5px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
     }
 `;

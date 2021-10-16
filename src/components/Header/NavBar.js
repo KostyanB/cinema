@@ -4,7 +4,9 @@ import env from '../../env.json';
 // components
 import NavItem from './NavItem';
 import { MenuIcon } from '../Styled/Icons/Icons';
-
+//env
+const { orange, brown, mainText } = env.colors;
+//styled
 const Wrapper = styled.nav`
     position: relative;
     display: -ms-flexbox;
@@ -24,7 +26,7 @@ const Nav = styled.ul`
         flex-direction: column;
         align-items: baseline;
         gap: 10px;
-        background-color: ${env.colors.brown};
+        background-color: ${brown};
         padding: 20px;
         border-radius: 5px;
         z-index: 101;
@@ -38,10 +40,10 @@ const MenuBtn = styled.button`
     display: none;
     width: 30px;
     height: 30px;
-    color: ${env.colors.mainText};
+    color: ${mainText};
 
     &:hover , :active {
-        color: ${env.colors.orange};
+        color: ${orange};
     }
 
     @media (max-width: 768px) {
@@ -78,7 +80,7 @@ const NavBar = () =>{
                     <NavItem key={key}
                         src={item[0]}
                         text={item[1]}
-                        handle={toggleMenu}
+                        toggleMenu={toggleMenu}
                     />
                 ))}
             </Nav>

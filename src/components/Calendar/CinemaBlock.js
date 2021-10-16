@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context } from '../Functions/Context';
+import { Context, SelectorsContext } from '../Context';
 import Label from './Label';
 import Selector from '../Selector';
 
@@ -40,15 +40,15 @@ const CinemaBlock = () => {
             activeCinema,
             setActiveCinema
         },
-        selectors: {
-            openSelectorCinema,
-            closeCinema,
-            closeSession,
-            toggleCinema,
-            setOutsideCinema,
-            setInsideClick
-        },
     } = useContext(Context);
+    const { selectors: {
+        openSelectorCinema,
+        closeCinema,
+        closeSession,
+        toggleCinema,
+        setOutsideCinema,
+        setInsideClick
+    }} = useContext(SelectorsContext);
 
     // выбор кинотеатра
     const handleSelectedCinema = value => {
@@ -71,7 +71,7 @@ const CinemaBlock = () => {
             <CinemaWrap>
                 <Selector items={cinemas}
                     handleSelector={handleSelectedCinema}
-                    handleBtn={handleCinemaSelectors}
+                    handleButton={handleCinemaSelectors}
                     isOpen={openSelectorCinema}
                     title={activeCinema}
                     handleOutsideClick={handleOutsideClick}

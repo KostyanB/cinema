@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-// import { Context } from '../Functions/Context';
 import SelectButton from './SelectButton';
+import SelectList from './SelectList';
 
 const Wrapper = styled.div`
     position: relative;
@@ -43,11 +43,11 @@ const Li = styled.li`
         color: ${env.colors.orange};
     }
 `;
-
+//******************************* */
 const Selector = ({
     items,
     isOpen,
-    handleBtn,
+    handleButton,
     handleSelector,
     title,
     handleOutsideClick
@@ -57,9 +57,9 @@ const Selector = ({
     useEffect(() => {
         const onClick = e => {
             // true, если мимо селектора
-            (!rootEl.current?.contains(e.target)
-                && !e.target.closest('.selector'))
-                    && handleOutsideClick();
+            if (!rootEl.current?.contains(e.target) && !e.target.closest('.selector')) {
+                handleOutsideClick();
+            }
         };
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
@@ -68,19 +68,12 @@ const Selector = ({
     return (
         <Wrapper ref={rootEl}>
             <SelectButton  isOpen={isOpen}
-                handle={handleBtn}
+                handleFn={handleButton}
                 title={title}
             />
             {isOpen &&
-            <List className="selector">
-                {items.map((item, i) =>
-                    <Li key={i}
-                        id={item}
-                        onClick={() => handleSelector(item)}
-                    >{item}</Li>
-                )}
-            </List>
-            }
+            <SelectList className="selector" items={items} handleSelector={handleSelector}/>}
+
         </Wrapper>
     );
 }

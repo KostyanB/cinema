@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Context } from '../Functions/Context';
-// hooks
-
+import { Context, SelectorsContextProvider } from '../Context';
 // components
 import Details from './Details';
 import FilmInfo from './FilmInfo';
@@ -19,7 +17,7 @@ const Wrapper = styled.section`
     padding-top: 60px;
     position: relative;
 `;
-
+//***************************** */
 const Movie = () => {
     const { movie } = useParams();
     const {
@@ -49,25 +47,20 @@ const Movie = () => {
 
     //******************************************* */
     return (
-        <>
-        {selectMovie && sessionsDb &&
-            <Wrapper>
-                <FilmInfo subtitle={selectMovie.enTitle}
-                    title={selectMovie.ruTitle}
-                    description={selectMovie.description}
-                />
-                <Details time={selectMovie.timing}
-                    rate={selectMovie.imdbRate}
-                />
-                <Calendar/>
-                <Odeum/>
-                <Total/>
-            </Wrapper>
-        }
-        {loading && <Preloader/>}
-        {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
-        {moviesObj && !(movie in moviesObj) && <Page404/>}
-        </>
+        <SelectorsContextProvider>
+            {selectMovie && sessionsDb &&
+                <Wrapper>
+                    <FilmInfo selectMovie={selectMovie}/>
+                    <Details selectMovie={selectMovie}/>
+                    <Calendar/>
+                    <Odeum/>
+                    <Total/>
+                </Wrapper>
+            }
+            {loading && <Preloader/>}
+            {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+            {moviesObj && !(movie in moviesObj) && <Page404/>}
+        </SelectorsContextProvider>
     );
 }
 export default Movie;

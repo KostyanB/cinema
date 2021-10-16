@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context } from '../Functions/Context';
+import { Context } from '../Context';
 import { SeatIcon } from '../Styled/Icons/Icons';
 
 const { orange: activeColor, booked: bookedColor, free: freeColor } = env.colors;
@@ -26,7 +26,6 @@ const Place = ({ name, row, place, booked }) => {
     const [ isReserved, setIsReserved ] = useState(false);
     const {
         reserved: {
-            reserved,
             addReserved,
             delReserved
         }

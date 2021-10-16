@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import env from '../../env.json';
 import { SeatIcon } from '../Styled/Icons/Icons';
 
-const { underline, free, orange, booked } = env.colors;
+const { free, orange, booked } = env.colors;
 const { size, line } = env.fonts.calendarFonts.label;
 
 const Wrapper = styled.div`
     padding-top: 22px;
-    /* border-top: ${underline}; */
     display: flex;
     align-items: center;
     width: 95%;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { Context } from '../Functions/Context';
+import { Context, SelectorsContext } from '../Context';
 import Label from './Label';
 import Selector from '../Selector';
 
@@ -34,15 +34,16 @@ const SessionBlock = () => {
             setActiveSession,
             activeMovieDb
         },
-        selectors: {
-            openSelectorSession,
+    } = useContext(Context);
+
+    const { selectors: {
+        openSelectorSession,
             closeCinema,
             closeSession,
             toggleSession,
             setOutsideSession,
-            setInsideClick
-        }
-    } = useContext(Context);
+            setInsideClick,
+    }} = useContext(SelectorsContext);
 
     useEffect(() => activeMovieDb && setActiveSession(Object.keys(activeMovieDb)[0]), [activeMovieDb]);
 
@@ -68,7 +69,7 @@ const SessionBlock = () => {
             {activeMovieDb &&
                 <Selector items={Object.keys(activeMovieDb)}
                     handleSelector={handleSelectedSession}
-                    handleBtn={handleSessionSelectors}
+                    handleButton={handleSessionSelectors}
                     isOpen={openSelectorSession}
                     title={activeSession}
                     handleOutsideClick={handleOutsideClick}
