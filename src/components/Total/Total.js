@@ -76,7 +76,7 @@ const Total = () => {
     const [ disable, setDisable ] = useState(true);
     const {
         reserved: {
-            total,
+            localTotal,
             reserved
         },
         calendar: {
@@ -101,7 +101,7 @@ const Total = () => {
         <Wrapper>
             <SumTotal>
                 <span>Всего к оплате</span>
-                <Sum>{total} &#8381;</Sum>
+                <Sum>{localTotal}</Sum>
             </SumTotal>
             <PayBtn disable={`${disable}`} to={'/paypage'}>
                 Перейти к оплате

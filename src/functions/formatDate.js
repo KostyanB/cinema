@@ -7,6 +7,6 @@ export const formatDate = date => {
         weekday: 'long',
     };
     const str = date.toLocaleString("ru", options);
-    const formattedStr = str.charAt(0).toUpperCase() + str.substr(1);
+    const formattedStr = str.charAt(0).toUpperCase() + str.substring(1);
     return formattedStr;
 };

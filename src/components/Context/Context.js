@@ -3,7 +3,7 @@ import { useGetMoviesDb } from '../Hooks/useGetMoviesDb';
 import { useGetSessionsDb } from '../Hooks/useGetSessionsDb';
 import { useBackgroundImg } from '../Hooks/useBackgroundImg';
 import { useCalendar } from '../Hooks/useCalendar';
-import { useReserved } from '../Hooks/useReserved';
+import { useReserveTicket } from '../Hooks/useReserveTicket';
 
 export const Context = createContext();
 
@@ -12,7 +12,7 @@ export const ContextProvider = (props) => {
     const getSessions = useGetSessionsDb();
     const backgroundImg = useBackgroundImg();
     const calendar = useCalendar();
-    const reserved = useReserved();
+    const reserved = useReserveTicket();
 
     return (
         <Context.Provider  value={{

@@ -22,7 +22,7 @@ const Text = styled.p`
         margin-bottom: 10px;
     }
 `;
-
+//**************************** */
 const PayPage = () => {
     const {
         calendar: {
@@ -33,26 +33,31 @@ const PayPage = () => {
         },
         reserved: {
             reserved,
-            total,
+            localTotal,
         },
         getMovies: {
             moviesObj,
         }
     } = useContext(Context);
 
-    const formatPlaces = () => reserved.reverse()
+    const ticketCount = reserved.length;
+    const ticketCountTitle = declOfNum(ticketCount, ['билет', 'билета', 'билетов']);
+    const movieTitle = moviesObj[activeMovie].ruTitle;
+    const formatedDate = formatDate(activeDate.date);
+    const formatedHour = declOfNum(+activeSession.substring(0, 2), ['час', 'часа', 'часов']);
+    const places = reserved.reverse()
         .reduce((acc, item) => acc += ` ряд ${item[0]} место ${item[1]},`, '')
         .slice(0, -1);
 
-    return (
+        return (
         <Container>
             <Title>Ваш заказ:</Title>
-            <Text>{reserved.length} {declOfNum(reserved.length, ['билет', 'билета', 'билетов'])}</Text>
-            <Text>На фильм "{moviesObj[activeMovie].ruTitle}"</Text>
-            <Text>{formatDate(activeDate.date)}, сеанс в {activeSession}</Text>
+            <Text>{ticketCount} {ticketCountTitle}</Text>
+            <Text>На фильм "{movieTitle}"</Text>
+            <Text>{formatedDate}, сеанс в {activeSession} {formatedHour}</Text>
             <Text>Кинотеатр: {activeCinema}</Text>
-            <Text>Вы бронируете: {formatPlaces()}</Text>
-            <Text>Сумма к оплате: {total} &#8381;</Text>
+            <Text>Вы бронируете: {places}</Text>
+            <Text>Сумма к оплате: {localTotal}</Text>
         </Container>
     );
 }
