@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { Context, SelectorsContext } from '../Context';
+import { Context } from '../Context';
 import Label from './Label';
 import Selector from '../Selector';
 
@@ -32,47 +32,26 @@ const SessionBlock = () => {
         calendar: {
             activeSession,
             setActiveSession,
-            activeMovieDb
+            activeMovieSessions
         },
     } = useContext(Context);
 
-    const { selectors: {
-        openSelectorSession,
-            closeCinema,
-            closeSession,
-            toggleSession,
-            setOutsideSession,
-            setInsideClick,
-    }} = useContext(SelectorsContext);
-
-    useEffect(() => activeMovieDb && setActiveSession(Object.keys(activeMovieDb)[0]), [activeMovieDb]);
-
     // выбор сеанса
     const handleSelectedSession = value => {
-        closeSession();
         setActiveSession(value);
-        setInsideClick();
     };
-    // управление открытием селектора
-    const handleSessionSelectors = () => {
-        toggleSession();
-        closeCinema();
-        setInsideClick();
-    };
-    // фиксация клика мимо селектора
-    const handleOutsideClick = () => setOutsideSession(true);
-
+    useEffect(() => {
+        activeMovieSessions && setActiveSession(Object.keys(activeMovieSessions)[0]);
+    }, [activeMovieSessions, setActiveSession]);
     return (
         <Wrapper>
             <Label>Время</Label>
             <SessionWrap>
-            {activeMovieDb &&
-                <Selector items={Object.keys(activeMovieDb)}
-                    handleSelector={handleSelectedSession}
-                    handleButton={handleSessionSelectors}
-                    isOpen={openSelectorSession}
+            {activeMovieSessions &&
+                <Selector items={Object.keys(activeMovieSessions)}
+                    handleSelectParam={handleSelectedSession}
                     title={activeSession}
-                    handleOutsideClick={handleOutsideClick}
+                    name="session"
                 />
             }
             </SessionWrap>

@@ -46,11 +46,13 @@ const SmallSeatBlock = styled(BigSeatBlock)`
 const SeatBlock = () => {
     const {
         calendar: {
-            activeMovieDb,
+            activeMovieSessions,
             activeSession,
         },
     } = useContext(Context);
     const { sizes, places } = useSchema();
+    console.log('places: ', places);
+    console.log('sizes: ', sizes);
     // настройки рядов
     const {
         frontHeight,
@@ -64,22 +66,27 @@ const SeatBlock = () => {
         backLeftPlaces,
         backRightPlaces
     } = places;
+
+    const session = activeSession && activeMovieSessions[activeSession];
+    console.log('activeMovieSessions: ', activeMovieSessions);
+    console.log('activeSession: ', activeSession);
+    console.log('session: ', session);
     // проверка на booked
     const checkBooked = (row, place) => {
-        const session = activeMovieDb[activeSession];
+        // const session = activeMovieSessions[activeSession];
 
-        if (session) {
+        // if (session) {
             if ((row in session) && (session[row].includes(place))) {
                 return true;
             } else {
                 return false;
             }
-        }
+        // }
     };
 
     return (
         <>
-        {/* {activeSession && */}
+        {session &&
             <>
                 <FrontBlock >
                     <BigSeatBlock width={frontWidth} height={frontHeight}>
@@ -116,7 +123,7 @@ const SeatBlock = () => {
                     </SmallSeatBlock>
                 </BackBlock>
             </>
-        {/* } */}
+        }
         </>
     );
 }

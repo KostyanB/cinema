@@ -5,14 +5,16 @@ import getDateArr from '../../functions/getDateArr';
 export const useCalendar = () => {
     const [ dateArr, setDateArr ] = useState(null);
     const [ activeMovie, setActiveMovie ] = useState(null);
-    const [ activeMovieDb, setActiveMovieDb ] = useState(null);
+    const [ activeMovieSessions, setActiveMovieSessions ] = useState(null);
     const [ activeDate, setActiveDate ] = useState(null);
     const [ activeCinema, setActiveCinema ] = useState(null);
     const [ activeSession, setActiveSession ] = useState(null);
+    const [ cinemasList, setCinemasList ] = useState(null);
+    const {cinemas, showPeriod} = env.calendar;
 
     useEffect(() => {
-        const arrDate = getDateArr(env.calendar.showPeriod);
-        setActiveCinema(env.calendar.cinemas[0]);
+        const arrDate = getDateArr(showPeriod);
+        setCinemasList(cinemas);
         setDateArr(arrDate);
         setActiveDate(arrDate[0]);
     }, []);
@@ -30,7 +32,9 @@ export const useCalendar = () => {
         setActiveCinema,
         activeSession,
         setActiveSession,
-        setActiveMovieDb,
-        activeMovieDb
+        cinemasList,
+        setCinemasList,
+        setActiveMovieSessions,
+        activeMovieSessions
     };
 };

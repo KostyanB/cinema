@@ -40,12 +40,12 @@ const Li = styled.li`
     }
 `;
 
-const SelectList = ({ items, handleSelector }) => (
+const SelectList = ({ items, handleSelection }) => (
     <List className="selector">
         {items.map((item, i) =>
             <Li key={i}
                 id={item}
-                onClick={() => handleSelector(item)}
+                onClick={() => handleSelection(item)}
             >{item}</Li>
         )}
     </List>

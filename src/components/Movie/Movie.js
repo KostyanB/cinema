@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Context, SelectorsContextProvider } from '../Context';
+import { Context } from '../Context';
+// hooks
+import { useGetSessionsDb } from '../Hooks/useGetSessionsDb';
 // components
 import Details from './Details';
 import FilmInfo from './FilmInfo';
@@ -20,11 +22,13 @@ const Wrapper = styled.section`
 //***************************** */
 const Movie = () => {
     const { movie } = useParams();
+    const getSessionsDb = useGetSessionsDb();
+    const { sessionsDb, error, loading } = getSessionsDb;
     const {
         getMovies: { moviesObj },
         backgroundImg: { setBackgroundImg },
-        calendar: { setActiveMovie, setActiveMovieDb },
-        getSessions: { sessionsDb, error, loading },
+        calendar: { setActiveMovie, setActiveMovieSessions, activeMovieSessions, activeSession },
+        // getSessions: { sessionsDb, error, loading },
     } = useContext(Context);
 
     const selectMovie = moviesObj && moviesObj[movie];
@@ -35,32 +39,32 @@ const Movie = () => {
             setActiveMovie(selectMovie.id);
         }
         if (sessionsDb) {
-            setActiveMovieDb(sessionsDb[movie]);
-        };
+            setActiveMovieSessions(sessionsDb[movie]);
+        }
     }, [selectMovie,
         setActiveMovie,
         setBackgroundImg,
         sessionsDb,
-        setActiveMovieDb,
+        setActiveMovieSessions,
         movie
     ]);
 
     //******************************************* */
     return (
-        <SelectorsContextProvider>
-            {selectMovie && sessionsDb &&
-                <Wrapper>
-                    <FilmInfo selectMovie={selectMovie}/>
-                    <Details selectMovie={selectMovie}/>
-                    <Calendar/>
-                    <Odeum/>
-                    <Total/>
-                </Wrapper>
-            }
-            {loading && <Preloader/>}
-            {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
-            {moviesObj && !(movie in moviesObj) && <Page404/>}
-        </SelectorsContextProvider>
+        <>
+        {selectMovie && sessionsDb &&
+            <Wrapper>
+                <FilmInfo selectMovie={selectMovie}/>
+                <Details selectMovie={selectMovie}/>
+                <Calendar/>
+                <Odeum/>
+                <Total/>
+            </Wrapper>
+        }
+        {loading && <Preloader/>}
+        {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+        {moviesObj && !(movie in moviesObj) && <Page404/>}
+        </>
     );
 }
 export default Movie;

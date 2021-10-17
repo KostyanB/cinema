@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import env from '../../env.json';
-import { Context, SelectorsContext } from '../Context';
+import { Context } from '../Context';
 import Label from './Label';
 import Selector from '../Selector';
 
@@ -33,49 +32,30 @@ const CinemaWrap = styled.div`
 
 //************************************** */
 const CinemaBlock = () => {
-    const cinemas = env.calendar.cinemas;
-
     const {
         calendar: {
             activeCinema,
-            setActiveCinema
+            setActiveCinema,
+            cinemasList,
         },
     } = useContext(Context);
-    const { selectors: {
-        openSelectorCinema,
-        closeCinema,
-        closeSession,
-        toggleCinema,
-        setOutsideCinema,
-        setInsideClick
-    }} = useContext(SelectorsContext);
 
     // выбор кинотеатра
     const handleSelectedCinema = value => {
-        closeCinema();
         setActiveCinema(value);
-        setInsideClick();
     };
-    // управление открытием селектора
-    const handleCinemaSelectors = () => {
-        toggleCinema();
-        closeSession();
-        setInsideClick();
-    };
-    // фиксация клика мимо селектора
-    const handleOutsideClick = () => setOutsideCinema(true);
 
     return (
         <Wrapper>
             <Label>Кинотеатр</Label>
             <CinemaWrap>
-                <Selector items={cinemas}
-                    handleSelector={handleSelectedCinema}
-                    handleButton={handleCinemaSelectors}
-                    isOpen={openSelectorCinema}
-                    title={activeCinema}
-                    handleOutsideClick={handleOutsideClick}
-                />
+                {cinemasList &&
+                    <Selector items={cinemasList}
+                        handleSelectParam={handleSelectedCinema}
+                        title={activeCinema}
+                        name="cinema"
+                    />
+                }
             </CinemaWrap>
         </Wrapper>
     )

@@ -37,10 +37,10 @@ const Button = styled.button`
         cursor: pointer;
     }
 
-    ${(props) => props.isOpen};
+    ${(props) => props.openStyle};
 `;
 
-const SelectButton = ({ isOpen, title, handleFn }) => {
+const SelectButton = ({ isOpen, title, toggleSelector }) => {
     const openBtnStyle = `
         border-bottom-color: ${orange};
         border-bottom-left-radius: 0;
@@ -52,7 +52,11 @@ const SelectButton = ({ isOpen, title, handleFn }) => {
     `;
 
     return (
-        <Button isOpen={isOpen && openBtnStyle} onClick={handleFn}>{title}</Button>
+        <Button openStyle={isOpen && openBtnStyle}
+            onClick={toggleSelector}
+        >
+            {title}
+        </Button>
     )
 };
 export default SelectButton;
