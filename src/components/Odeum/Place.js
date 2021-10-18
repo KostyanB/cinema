@@ -22,7 +22,7 @@ const PlaceWrap = styled.div`
     }
 `;
 
-const Place = ({ name, row, place, booked, addPlace, delPlace, isReserved }) => {
+const Place = ({ name, row, place, isBooked, addPlace, delPlace, isReserved }) => {
     // const [ isReserved, setIsReserved ] = useState(false);
     // const {
     //     reserved: {
@@ -33,7 +33,7 @@ const Place = ({ name, row, place, booked, addPlace, delPlace, isReserved }) => 
 
     // управление резервированием
     const handleReserved = () => {
-        if (booked) {
+        if (isBooked) {
             return;
         } else {
             if (!isReserved) {
@@ -54,7 +54,7 @@ const Place = ({ name, row, place, booked, addPlace, delPlace, isReserved }) => 
     return (
         <PlaceWrap dataRow={row}
             dataPlace={place}
-            booked={booked}
+            booked={isBooked}
             onClick={handleReserved}
             reserved={isReserved}
         >

@@ -74,6 +74,7 @@ const SeatBlock = () => {
     } = places;
 
     const session = activeSession && activeMovieSessions[activeSession];
+    console.log('session: ', session);
 
     // проверка на booked
     const checkBooked = (row, place) => {
