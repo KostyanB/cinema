@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Context';
@@ -22,28 +22,34 @@ const PlaceWrap = styled.div`
     }
 `;
 
-const Place = ({ name, row, place, booked }) => {
-    const [ isReserved, setIsReserved ] = useState(false);
-    const {
-        reserved: {
-            addReserved,
-            delReserved
-        }
-    } = useContext(Context);
+const Place = ({ name, row, place, booked, addPlace, delPlace, isReserved }) => {
+    // const [ isReserved, setIsReserved ] = useState(false);
+    // const {
+    //     reserved: {
+    //         addReserved,
+    //         delReserved,
+    //     }
+    // } = useContext(Context);
+
     // управление резервированием
     const handleReserved = () => {
         if (booked) {
             return;
         } else {
             if (!isReserved) {
-                addReserved(row, place);
-                setIsReserved(true);
+                // setReserved(true);
+                // addReserved(row, place);
+                addPlace(row, place);
             } else {
-                setIsReserved(false);
-                delReserved(row, place);
+                // setIsReserved(false);
+                // delReserved(row, place);
+                delPlace(row, place);
             }
         }
     };
+    // useEffect(() => {
+    //     res && setIsReserved(true);
+    // }, [])
 
     return (
         <PlaceWrap dataRow={row}

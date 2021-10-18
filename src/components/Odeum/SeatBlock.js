@@ -48,12 +48,18 @@ const SeatBlock = () => {
         calendar: {
             activeMovieSessions,
             activeSession,
+            activeMovie,
+            activeDate,
+            activeCinema,
+        },
+        reserved: {
+            addReserved,
+            delReserved,
+            reserved
         },
     } = useContext(Context);
-    const { sizes, places } = useSchema();
-    console.log('places: ', places);
-    console.log('sizes: ', sizes);
     // настройки рядов
+    const { sizes, places } = useSchema();
     const {
         frontHeight,
         frontWidth,
@@ -68,20 +74,33 @@ const SeatBlock = () => {
     } = places;
 
     const session = activeSession && activeMovieSessions[activeSession];
-    console.log('activeMovieSessions: ', activeMovieSessions);
-    console.log('activeSession: ', activeSession);
-    console.log('session: ', session);
+
     // проверка на booked
     const checkBooked = (row, place) => {
-        // const session = activeMovieSessions[activeSession];
-
-        // if (session) {
+        if (session) {
             if ((row in session) && (session[row].includes(place))) {
                 return true;
             } else {
                 return false;
             }
-        // }
+        }
+    };
+
+    // проверка на reserved
+    const checkReserved = (row, place) => {
+        if (reserved && reserved.resPlaces.find(item => (item[0] === row && item[1] === place))) {
+            return true;
+        }
+    };
+
+    // добавление в резерв
+    const addPlaceToReserved = (row, place) => {
+        addReserved({row, place, activeDate, activeCinema, activeSession, activeMovie});
+    };
+
+    // удаление из резерва
+    const delPlaceFromReserved = (row, place) => {
+        delReserved(row, place);
     };
 
     return (
@@ -95,7 +114,10 @@ const SeatBlock = () => {
                                 name={`ряд ${item[0]}, место ${item[1]}`}
                                 row={item[0]}
                                 place={item[1]}
-                                booked={checkBooked(item[0], item[1])}
+                                isBooked={checkBooked(item[0], item[1])}
+                                isReserved={checkReserved(item[0], item[1])}
+                                addPlace={addPlaceToReserved}
+                                delPlace={delPlaceFromReserved}
                             />
                         )}
                     </BigSeatBlock>
@@ -107,7 +129,10 @@ const SeatBlock = () => {
                                 name={`ряд ${item[0]}, место ${item[1]}`}
                                 row={item[0]}
                                 place={item[1]}
-                                booked={checkBooked(item[0], item[1])}
+                                isBooked={checkBooked(item[0], item[1])}
+                                isReserved={checkReserved(item[0], item[1])}
+                                addPlace={addPlaceToReserved}
+                                delPlace={delPlaceFromReserved}
                             />
                         )}
                     </SmallSeatBlock>
@@ -117,7 +142,10 @@ const SeatBlock = () => {
                                 name={`ряд ${item[0]}, место ${item[1]}`}
                                 row={item[0]}
                                 place={item[1]}
-                                booked={checkBooked(item[0], item[1])}
+                                isBooked={checkBooked(item[0], item[1])}
+                                isReserved={checkReserved(item[0], item[1])}
+                                addPlace={addPlaceToReserved}
+                                delPlace={delPlaceFromReserved}
                             />
                         )}
                     </SmallSeatBlock>

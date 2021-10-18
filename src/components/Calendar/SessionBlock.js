@@ -34,23 +34,40 @@ const SessionBlock = () => {
             setActiveSession,
             activeMovieSessions
         },
+        reserved: {
+            clearReserved,
+            reserved
+        },
     } = useContext(Context);
 
     // выбор сеанса
     const handleSelectedSession = value => {
         setActiveSession(value);
+        (reserved) && clearReserved();
     };
+
+    const sessionsArr = activeMovieSessions && Object.keys(activeMovieSessions);
+
+    //ставим активный сеанс от наличия резерва
     useEffect(() => {
-        activeMovieSessions && setActiveSession(Object.keys(activeMovieSessions)[0]);
-    }, [activeMovieSessions, setActiveSession]);
+        if (sessionsArr) {
+            if (reserved) {
+                setActiveSession(reserved.resSession);
+            } else if (!sessionsArr.includes(activeSession)) {
+                setActiveSession(sessionsArr[0]);
+            }
+        }
+    }, [setActiveSession, reserved, activeSession, sessionsArr]);
+
+    //********************************** */
     return (
         <Wrapper>
             <Label>Время</Label>
             <SessionWrap>
             {activeMovieSessions &&
-                <Selector items={Object.keys(activeMovieSessions)}
+                <Selector items={sessionsArr}
                     handleSelectParam={handleSelectedSession}
-                    title={activeSession}
+                    activeSelector={activeSession}
                     name="session"
                 />
             }

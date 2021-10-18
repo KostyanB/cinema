@@ -3,6 +3,7 @@ import env from '../../env.json';
 import getDateArr from '../../functions/getDateArr';
 
 export const useCalendar = () => {
+    const {cinemas, showPeriod} = env.calendar;
     const [ dateArr, setDateArr ] = useState(null);
     const [ activeMovie, setActiveMovie ] = useState(null);
     const [ activeMovieSessions, setActiveMovieSessions ] = useState(null);
@@ -10,7 +11,6 @@ export const useCalendar = () => {
     const [ activeCinema, setActiveCinema ] = useState(null);
     const [ activeSession, setActiveSession ] = useState(null);
     const [ cinemasList, setCinemasList ] = useState(null);
-    const {cinemas, showPeriod} = env.calendar;
 
     useEffect(() => {
         const arrDate = getDateArr(showPeriod);

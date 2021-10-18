@@ -27,8 +27,15 @@ const Movie = () => {
     const {
         getMovies: { moviesObj },
         backgroundImg: { setBackgroundImg },
-        calendar: { setActiveMovie, setActiveMovieSessions, activeMovieSessions, activeSession },
-        // getSessions: { sessionsDb, error, loading },
+        calendar: {
+            setActiveMovie,
+            setActiveMovieSessions,
+            setActiveSession
+        },
+        reserved: {
+            clearReserved,
+            reserved,
+        },
     } = useContext(Context);
 
     const selectMovie = moviesObj && moviesObj[movie];
@@ -38,15 +45,22 @@ const Movie = () => {
             setBackgroundImg(selectMovie.photo);
             setActiveMovie(selectMovie.id);
         }
+
         if (sessionsDb) {
             setActiveMovieSessions(sessionsDb[movie]);
-        }
+            if (reserved && movie !== reserved.resMovie) {
+                clearReserved();
+            }
+    }
     }, [selectMovie,
         setActiveMovie,
         setBackgroundImg,
         sessionsDb,
         setActiveMovieSessions,
-        movie
+        movie,
+        reserved,
+        clearReserved,
+        setActiveSession
     ]);
 
     //******************************************* */

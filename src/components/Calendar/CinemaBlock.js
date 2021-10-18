@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Context } from '../Context';
 import Label from './Label';
@@ -36,15 +36,36 @@ const CinemaBlock = () => {
         calendar: {
             activeCinema,
             setActiveCinema,
+            activeMovieSessions,
             cinemasList,
+        },
+        reserved: {
+            clearReserved,
+            reserved,
         },
     } = useContext(Context);
 
     // выбор кинотеатра
     const handleSelectedCinema = value => {
         setActiveCinema(value);
+        // сброс резерва при смене кинотеатра
+        if (reserved) {
+            clearReserved();
+        }
     };
 
+    // ставим активный кинотеатр от наличия резерва
+    useEffect(() => {
+        if (activeMovieSessions) {
+            if (reserved) {
+                setActiveCinema(reserved.resCinema);
+            } else {
+                setActiveCinema(cinemasList[0]);
+            }
+        }
+    }, [activeMovieSessions, reserved, setActiveCinema, cinemasList]);
+
+    //****************************** */
     return (
         <Wrapper>
             <Label>Кинотеатр</Label>
@@ -52,7 +73,7 @@ const CinemaBlock = () => {
                 {cinemasList &&
                     <Selector items={cinemasList}
                         handleSelectParam={handleSelectedCinema}
-                        title={activeCinema}
+                        activeSelector={activeCinema}
                         name="cinema"
                     />
                 }

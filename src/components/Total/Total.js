@@ -79,24 +79,19 @@ const Total = () => {
             localTotal,
             reserved
         },
-        calendar: {
-            activeDate,
-            activeCinema,
-            activeSession
-        }
     } = useContext(Context);
 
+    // вкл кнопку если все выбраны
     useEffect(() => {
-        const checkArr = [activeDate, activeSession, activeCinema, reserved.length];
-        checkArr.every(item => item) && setDisable(false);
-        checkArr.some(item => !item) && setDisable(true);
-    }, [
-        activeDate,
-        activeSession,
-        activeCinema,
-        reserved.length
-    ]);
+        if (reserved) {
+            const { resDate, resMovie, resCinema, resSession, resPlaces } = reserved;
+            const checkArr = [resDate, resMovie, resCinema, resSession, resPlaces.length];
+            checkArr.every(item => item) && setDisable(false);
+            checkArr.some(item => !item) && setDisable(true);
+        }
+    }, [reserved]);
 
+    //**************************** */
     return (
         <Wrapper>
             <SumTotal>

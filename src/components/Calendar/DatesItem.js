@@ -45,11 +45,13 @@ const WeekDay = styled.span`
     line-height: ${dayFont.line};
 `;
 
-const DatesItem = ({ dateParam }) => {
+const DatesItem = ({ dateParam, hanleSelectedDay }) => {
     const { monthName, dayName, dayNum } = dateParam;
 
     const {
-        calendar: { activeDate, setActiveDate },
+        calendar: {
+            activeDate,
+        },
     } = useContext(Context);
 
     const activeStyle = (dayNum === activeDate?.dayNum) ? {
@@ -57,12 +59,8 @@ const DatesItem = ({ dateParam }) => {
         color: brown
     } : {};
 
-    const hanleActiveDay = () => {
-        setActiveDate(dateParam);
-    };
-
     return (
-        <Item style={activeStyle} onClick={hanleActiveDay}>
+        <Item style={activeStyle} onClick={() => hanleSelectedDay(dateParam)}>
             <Month>{monthName}</Month>
             <Day>{dayNum}</Day>
             <WeekDay>{dayName}</WeekDay>

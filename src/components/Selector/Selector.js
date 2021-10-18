@@ -11,21 +11,27 @@ const Wrapper = styled.div`
 const Selector = ({
     items,
     handleSelectParam,
-    title,
+    activeSelector,
     name
 }) => {
     const selectorName = `${name}-selector`;
     const thisSelector = useRef(null);
     const [ openSelector, setOpenSelector ] = useState(false);
+
     // закр селектор и передаем выбранный
     const handleSelection = selected => {
         setOpenSelector(false);
         handleSelectParam(selected);
     };
+
     // откр/закр кликом по кнопке
     const toggleSelector = () => setOpenSelector(!openSelector);
+
     // утановка 1-го значения по-умолчанию
-    useEffect(() => handleSelectParam(items[0]), []);
+    // useEffect(() => {
+    //     !activeSelector && handleSelectParam(items[0]);
+    // }, [items, activeSelector, handleSelectParam]);
+
     // клик вне селектора
     useEffect(() => {
         const onClick = e => {
@@ -42,7 +48,7 @@ const Selector = ({
         <Wrapper ref={thisSelector}>
             <SelectButton  isOpen={openSelector}
                 toggleSelector={toggleSelector}
-                title={title}
+                title={activeSelector}
             />
             {openSelector &&
             <SelectList className={selectorName}
