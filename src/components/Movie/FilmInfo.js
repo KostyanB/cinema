@@ -55,13 +55,13 @@ const Trailer = styled.button`
 `;
 
 const FilmInfo = ({ selectMovie }) => {
-    const { subtitle, title, description, trailer } = selectMovie;
+    const { enTitle, ruTitle, description, trailer } = selectMovie;
 
     return (
         <Film>
             <div>
-                <SubTitle>{subtitle}</SubTitle>
-                <Title>{title}</Title>
+                <SubTitle>{enTitle}</SubTitle>
+                <Title>{ruTitle}</Title>
                 <Description>{description}</Description>
             </div>
             <Fancybox>

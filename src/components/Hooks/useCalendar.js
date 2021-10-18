@@ -15,6 +15,7 @@ export const useCalendar = () => {
     useEffect(() => {
         const arrDate = getDateArr(showPeriod);
         setCinemasList(cinemas);
+        setActiveCinema(cinemas[0]);
         setDateArr(arrDate);
         setActiveDate(arrDate[0]);
     }, []);

@@ -55,7 +55,7 @@ const DateBlock = () => {
         if (reserved) {
             setActiveDate(reserved.resDate);
         } else {
-            setActiveDate(dateArr[0]);
+            // setActiveDate(dateArr[0]);
         }
     }, [dateArr, reserved, setActiveDate]);
 

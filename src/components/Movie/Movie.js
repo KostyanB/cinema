@@ -30,7 +30,6 @@ const Movie = () => {
         calendar: {
             setActiveMovie,
             setActiveMovieSessions,
-            setActiveSession
         },
         reserved: {
             clearReserved,
@@ -52,7 +51,8 @@ const Movie = () => {
                 clearReserved();
             }
     }
-    }, [selectMovie,
+    }, [
+        selectMovie,
         setActiveMovie,
         setBackgroundImg,
         sessionsDb,
@@ -60,7 +60,6 @@ const Movie = () => {
         movie,
         reserved,
         clearReserved,
-        setActiveSession
     ]);
 
     //******************************************* */

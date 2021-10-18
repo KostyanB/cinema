@@ -88,6 +88,8 @@ const Total = () => {
             const checkArr = [resDate, resMovie, resCinema, resSession, resPlaces.length];
             checkArr.every(item => item) && setDisable(false);
             checkArr.some(item => !item) && setDisable(true);
+        } else {
+            setDisable(true);
         }
     }, [reserved]);
 

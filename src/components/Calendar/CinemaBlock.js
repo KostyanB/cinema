@@ -60,7 +60,7 @@ const CinemaBlock = () => {
             if (reserved) {
                 setActiveCinema(reserved.resCinema);
             } else {
-                setActiveCinema(cinemasList[0]);
+                // setActiveCinema(cinemasList[0]);
             }
         }
     }, [activeMovieSessions, reserved, setActiveCinema, cinemasList]);

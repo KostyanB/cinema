@@ -48,17 +48,18 @@ const Rate = styled.p`
 `;
 
 const Details = ({ selectMovie }) => {
-    const { time, rate } = selectMovie;
+    const { timing, imdbRate } = selectMovie;
+    console.log('selectMovie: ', selectMovie);
 
     return (
         <Wrapper>
             <Timing>
                 <ClockIcon width={20} height={20}/>
-                <span>{time} мин.</span>
+                <span>{timing} мин.</span>
             </Timing>
             <Rating>
-                <img src={RateIcon} alt="Imdb rate"/>
-                <Rate>{rate}<span>/ 10</span></Rate>
+                <img src={RateIcon} alt="Imdb imdbRate"/>
+                <Rate>{imdbRate}<span>/ 10</span></Rate>
             </Rating>
         </Wrapper>
     );
