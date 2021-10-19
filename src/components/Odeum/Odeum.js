@@ -29,7 +29,7 @@ const Wrapper = styled(Container)`
     }
 
     @media (max-width: 1240px) {
-        padding: 50px 10px 64px;
+        padding: 50px 10px 38px;
     }
 `;
 const Screen = styled.div`

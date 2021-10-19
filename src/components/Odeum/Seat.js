@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Context';
@@ -7,8 +7,8 @@ import { SeatIcon } from '../Styled/Icons/Icons';
 const { orange: activeColor, booked: bookedColor, free: freeColor } = env.colors;
 
 const PlaceWrap = styled.div`
-    width: 49px;
-    height: 49px;
+    width: ${props => props.size};
+    height: ${props => props.size};
     cursor: ${props => props.booked ? 'not-allowed' : 'pointer'};
     display: flex;
     justify-content: center;
@@ -22,14 +22,20 @@ const PlaceWrap = styled.div`
     }
 `;
 
-const Place = ({ name, row, place, isBooked, addPlace, delPlace, isReserved }) => {
-    // const [ isReserved, setIsReserved ] = useState(false);
-    // const {
-    //     reserved: {
-    //         addReserved,
-    //         delReserved,
-    //     }
-    // } = useContext(Context);
+const Seat = ({ coord, isBooked, isReserved }) => {
+    const [ row, place ] = coord;
+    const {
+        calendar: {
+            activeSession,
+            activeMovie,
+            activeDate,
+            activeCinema,
+        },
+        reserved: {
+            addReserved,
+            delReserved,
+        },
+    } = useContext(Context);
 
     // управление резервированием
     const handleReserved = () => {
@@ -37,29 +43,27 @@ const Place = ({ name, row, place, isBooked, addPlace, delPlace, isReserved }) =
             return;
         } else {
             if (!isReserved) {
-                // setReserved(true);
-                // addReserved(row, place);
-                addPlace(row, place);
+                // addPlace(row, place);
+                // добавление в резерв
+                addReserved({row, place, activeDate, activeCinema, activeSession, activeMovie});
             } else {
-                // setIsReserved(false);
-                // delReserved(row, place);
-                delPlace(row, place);
+                // delPlace(row, place);
+                // удаление из резерва
+                delReserved(row, place);
             }
         }
     };
-    // useEffect(() => {
-    //     res && setIsReserved(true);
-    // }, [])
 
     return (
-        <PlaceWrap dataRow={row}
+        <PlaceWrap size={`${env.scheme.placeSize}px`}
+            dataRow={row}
             dataPlace={place}
             booked={isBooked}
             onClick={handleReserved}
             reserved={isReserved}
         >
-            <SeatIcon name={name} width={36} height={29}/>
+            <SeatIcon name={`ряд ${row}, место ${place}`} width={36} height={29}/>
         </PlaceWrap>
     )
 }
-export default Place;
+export default Seat;

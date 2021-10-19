@@ -49,7 +49,6 @@ const Rate = styled.p`
 
 const Details = ({ selectMovie }) => {
     const { timing, imdbRate } = selectMovie;
-    console.log('selectMovie: ', selectMovie);
 
     return (
         <Wrapper>
