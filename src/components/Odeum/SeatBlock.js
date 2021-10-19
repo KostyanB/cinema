@@ -52,23 +52,18 @@ const SeatBlock = () => {
 
     const session = activeSession && activeMovieSessions[activeSession];
 
-    // проверка на booked
-    const checkBooked = ([row, place]) => {
+    // проверка на booked/reserved
+    const checkSeatStatus = ([row, place]) => {
         if (session) {
             if ((row in session) && (session[row].includes(place))) {
-                return true;
+                return 'isBooked';
+            } else if (reserved && reserved.resPlaces.find(item => (item[0] === row && item[1] === place))) {
+                return 'isReserved';
             } else {
-                return false;
+                return '';
             }
         }
-    };
-
-    // проверка на reserved
-    const checkReserved = ([row, place]) => {
-        if (reserved && reserved.resPlaces.find(item => (item[0] === row && item[1] === place))) {
-            return true;
-        }
-    };
+    }
 
     return (
         <>
@@ -79,8 +74,7 @@ const SeatBlock = () => {
                         {item[1].map(coord =>
                             <Seat key={`${coord[0]}-${coord[1]}`}
                                 coord={coord}
-                                isBooked={checkBooked(coord)}
-                                isReserved={checkReserved(coord)}
+                                status={checkSeatStatus(coord)}
                             />
                         )}
                     </Block>

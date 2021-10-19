@@ -12,8 +12,7 @@ export const useReserveTicket = () => {
         setLocalTotal(formatCostToLocale(val));
     }
     const addReserved = ({
-        row,
-        place,
+        coord,
         activeDate,
         activeCinema,
         activeSession,
@@ -25,14 +24,12 @@ export const useReserveTicket = () => {
                 resMovie: activeMovie,
                 resCinema: activeCinema,
                 resSession: activeSession,
-                resPlaces: [
-                    [row, place]
-                ]
+                resPlaces: [coord]
             };
             setReserved(resObj);
             totalSet(env.total.ticketCost)
         } else {
-            const newPlaces = [...reserved.resPlaces, [row, place]];
+            const newPlaces = [...reserved.resPlaces, coord];
             setReserved({
                 ...reserved,
                 resPlaces: newPlaces
@@ -41,7 +38,7 @@ export const useReserveTicket = () => {
         }
     };
 
-    const delReserved = (row, place) => {
+    const delReserved = ([row, place]) => {
         const delPos = reserved.resPlaces.findIndex(item => (item[0] === row && item[1] === place));
         const newPlaces = [...reserved.resPlaces.slice(0, delPos), ...reserved.resPlaces.slice(delPos + 1)];
         setReserved({

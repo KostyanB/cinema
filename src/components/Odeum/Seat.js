@@ -9,20 +9,21 @@ const { orange: activeColor, booked: bookedColor, free: freeColor } = env.colors
 const PlaceWrap = styled.div`
     width: ${props => props.size};
     height: ${props => props.size};
-    cursor: ${props => props.booked ? 'not-allowed' : 'pointer'};
+    cursor: ${props => (props.status === 'isBooked') ? 'not-allowed' : 'pointer'};
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${props => props.booked ? bookedColor :
-            props.reserved ? activeColor :
-                freeColor};
+    color: ${props => (props.status === 'isBooked') ? bookedColor :
+        (props.status === 'isReserved') ? activeColor :
+            freeColor
+    };
 
     &:hover , :active {
-        color: ${props => props.booked ? bookedColor : activeColor};
+        color: ${props => (props.status === 'isBooked') ? bookedColor : activeColor};
     }
 `;
 
-const Seat = ({ coord, isBooked, isReserved }) => {
+const Seat = ({ coord, status }) => {
     const [ row, place ] = coord;
     const {
         calendar: {
@@ -39,17 +40,13 @@ const Seat = ({ coord, isBooked, isReserved }) => {
 
     // управление резервированием
     const handleReserved = () => {
-        if (isBooked) {
+        if (status === 'isBooked') {
             return;
         } else {
-            if (!isReserved) {
-                // addPlace(row, place);
-                // добавление в резерв
-                addReserved({row, place, activeDate, activeCinema, activeSession, activeMovie});
-            } else {
-                // delPlace(row, place);
-                // удаление из резерва
-                delReserved(row, place);
+            if (status !== 'isReserved') { // добавление в резерв
+                addReserved({coord, activeDate, activeCinema, activeSession, activeMovie});
+            } else { // удаление из резерва
+                delReserved(coord);
             }
         }
     };
@@ -58,9 +55,8 @@ const Seat = ({ coord, isBooked, isReserved }) => {
         <PlaceWrap size={`${env.scheme.placeSize}px`}
             dataRow={row}
             dataPlace={place}
-            booked={isBooked}
             onClick={handleReserved}
-            reserved={isReserved}
+            status={status}
         >
             <SeatIcon name={`ряд ${row}, место ${place}`} width={36} height={29}/>
         </PlaceWrap>
