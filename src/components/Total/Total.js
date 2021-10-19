@@ -93,6 +93,9 @@ const Total = () => {
         }
     }, [reserved]);
 
+    // откл кнопки по Enter при disable
+    const checkEnterKey = e => ((e.keyCode === 13) && disable) && e.preventDefault();
+
     //**************************** */
     return (
         <Wrapper>
@@ -100,7 +103,7 @@ const Total = () => {
                 <span>Всего к оплате</span>
                 <Sum>{localTotal}</Sum>
             </SumTotal>
-            <PayBtn disable={`${disable}`} to={'/paypage'}>
+            <PayBtn disable={`${disable}`} to={'/paypage'} onKeyDown={checkEnterKey}>
                 Перейти к оплате
             </PayBtn>
         </Wrapper>

@@ -69,7 +69,7 @@ const FilmInfo = ({ selectMovie }) => {
                     className="button button--secondary"
                     data-src={trailer}
                 >
-                    <PlayIcon/>
+                    <PlayIcon name={`Смотреть трейлер ${ruTitle}`}/>
                 </Trailer>
             </Fancybox>
         </Film>

@@ -10,7 +10,8 @@ export const useReserveTicket = () => {
     const totalSet = val => {
         setTotal(val);
         setLocalTotal(formatCostToLocale(val));
-    }
+    };
+
     const addReserved = ({
         coord,
         activeDate,
@@ -46,7 +47,7 @@ export const useReserveTicket = () => {
             resPlaces: newPlaces
         });
         totalSet(newPlaces.length * env.total.ticketCost);
-    }
+    };
 
     const clearReserved = () => {
         setReserved(null);
