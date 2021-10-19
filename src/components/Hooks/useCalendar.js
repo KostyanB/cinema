@@ -18,6 +18,7 @@ export const useCalendar = () => {
         setActiveCinema(cinemas[0]);
         setDateArr(arrDate);
         setActiveDate(arrDate[0]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const resetMovie = () => setActiveMovie(null);

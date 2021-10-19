@@ -1,3 +1,13 @@
-If use clear "create-react-app", add packgages:
+If use command "npx create-react-app app-name", add packgages:
 
 npm i react-dom react-router-dom styled-components
+
+* if you need IE9/11 support
+
+npm i  react-app-polyfill
+
+* add to index.js
+
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
