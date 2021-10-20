@@ -53,7 +53,7 @@ const SeatBlock = () => {
     const session = activeSession && activeMovieSessions[activeSession];
 
     // проверка на booked/reserved
-    const checkSeatStatus = ([row, place]) => {
+    const checkSeatStatus = (row, place) => {
         if (session) {
             if ((row in session) && (session[row].includes(place))) {
                 return 'isBooked';
@@ -74,7 +74,7 @@ const SeatBlock = () => {
                         {item[1].map(coord =>
                             <Seat key={`${coord[0]}-${coord[1]}`}
                                 coord={coord}
-                                status={checkSeatStatus(coord)}
+                                status={checkSeatStatus(...coord)}
                             />
                         )}
                     </Block>

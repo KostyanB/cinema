@@ -39,13 +39,14 @@ export const useReserveTicket = () => {
         }
     };
 
-    const delReserved = ([row, place]) => {
-        const delPos = reserved.resPlaces.findIndex(item => (item[0] === row && item[1] === place));
-        const newPlaces = [...reserved.resPlaces.slice(0, delPos), ...reserved.resPlaces.slice(delPos + 1)];
-        setReserved({
-            ...reserved,
-            resPlaces: newPlaces
-        });
+    const delReserved = (row, place) => {
+        const deletedPosition = reserved.resPlaces.findIndex(item =>
+            (item[0] === row && item[1] === place));
+        const newPlaces = [
+            ...reserved.resPlaces.slice(0, deletedPosition),
+            ...reserved.resPlaces.slice(deletedPosition + 1)
+        ];
+        setReserved({ ...reserved, resPlaces: newPlaces });
         totalSet(newPlaces.length * env.total.ticketCost);
     };
 
@@ -53,6 +54,7 @@ export const useReserveTicket = () => {
         setReserved(null);
         totalSet(0);
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => clearReserved(), []);
 

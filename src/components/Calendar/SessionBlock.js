@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Context } from '../Context';
-import Label from './Label';
+import Label from '../Styled/Label';
 import Selector from '../Selector';
 
 // styled

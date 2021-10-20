@@ -46,7 +46,7 @@ const Seat = ({ coord, status }) => {
             if (status !== 'isReserved') { // добавление в резерв
                 addReserved({coord, activeDate, activeCinema, activeSession, activeMovie});
             } else { // удаление из резерва
-                delReserved(coord);
+                delReserved(...coord);
             }
         }
     };

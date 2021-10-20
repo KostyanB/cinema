@@ -4,9 +4,7 @@ import env from '../../env.json';
 import { Container } from '../Styled/Container';
 import { PlayIcon } from '../Styled/Icons/Icons';
 import Fancybox from './Fancybox';
-//env
-const { size: mainSize, line: mainLine } = env.fonts.mainFont;
-const { title, subtitle } = env.fonts.mainFonts;
+
 //styled
 const Film = styled(Container)`
     display: flex;
@@ -26,19 +24,19 @@ const Film = styled(Container)`
     }
 `;
 const Title = styled.h1`
-    font-size: ${title.size};
-    line-height: ${title.line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     margin-bottom: 23px;
 `;
 const SubTitle = styled.small`
-    font-size: ${subtitle.size};
-    line-height: ${subtitle.line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     margin-bottom: 11px;
     opacity: 0.5;
 `;
 const Description = styled.p`
-    font-size: ${mainSize};
-    line-height: ${mainLine};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     margin-bottom: 51px;
 
     @media (max-width: 768px) {
@@ -55,14 +53,33 @@ const Trailer = styled.button`
 `;
 
 const FilmInfo = ({ selectMovie }) => {
-    const { enTitle, ruTitle, description, trailer } = selectMovie;
+    const {
+        size: mainSize,
+        line: mainLine
+    } = env.fonts.mainFont;
+    const {
+        title,
+        subtitle
+    } = env.fonts.mainFonts;
+    const {
+        enTitle,
+        ruTitle,
+        description,
+        trailer
+    } = selectMovie;
 
     return (
         <Film>
             <div>
-                <SubTitle>{enTitle}</SubTitle>
-                <Title>{ruTitle}</Title>
-                <Description>{description}</Description>
+                <SubTitle size={subtitle.size} line={subtitle.line}>
+                    {enTitle}
+                </SubTitle>
+                <Title size={title.size} line={title.line}>
+                    {ruTitle}
+                </Title>
+                <Description size={mainSize} line={mainLine}>
+                    {description}
+                </Description>
             </div>
             <Fancybox>
                 <Trailer data-fancybox="video-gallery"

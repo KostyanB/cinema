@@ -1,19 +1,19 @@
 import React, { useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import env from '../../env.json';
 import { Context } from '../Context';
 import { Container } from '../Styled/Container';
-//env
-import env from '../../env.json';
-const { size, line } = env.fonts.mainFonts.subtitle;
+
 //styled
 const Title = styled.h2`
-    font-size: ${size};
-    line-height: ${line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     margin-bottom: 15px;
 `;
 
 const SomePage = () => {
+    const { size, line } = env.fonts.mainFonts.subtitle;
     const location = useLocation();
 
     const {
@@ -24,7 +24,9 @@ const SomePage = () => {
 
     return (
         <Container>
-            <Title>{env.headNav[location.pathname.slice(1)]}</Title>
+            <Title size ={size} line={line}>
+                {env.headNav[location.pathname.slice(1)]}
+            </Title>
         </Container>
     );
 }

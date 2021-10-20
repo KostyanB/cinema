@@ -4,28 +4,31 @@ import { Context } from '../Context';
 import env from '../../env.json';
 import { Link } from 'react-router-dom';
 import { Container } from '../Styled/Container';
-//env
-const { size: subSize, line: subLine } = env.fonts.mainFonts.subtitle;
+
 //styled
 const MovieLink = styled(Link)`
     display: block;
     cursor: pointer;
     width: fit-content;
-    font-size: ${subSize};
-    line-height: ${subLine};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     :hover, :active {
         color: ${env.colors.orange};
     }
 `;
 const Title = styled.h2`
-    font-size: ${subSize};
-    line-height: ${subLine};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
 `;
 
 const Movies = () => {
+    const {
+        size,
+        line
+    } = env.fonts.mainFonts.subtitle;
     const {
         getMovies: {
             moviesDb
@@ -39,9 +42,17 @@ const Movies = () => {
 
     return (
         <Container>
-            <Title>Выберите фильм</Title>
+            <Title size={size} line={line}>
+                Выберите фильм
+            </Title>
             {moviesDb.map(item =>
-                <MovieLink to={`/movie/${item.id}`} key={item.id}>{item.ruTitle}</MovieLink>
+                <MovieLink to={`/movie/${item.id}`}
+                    key={item.id}
+                    size={size}
+                    line={line}
+                >
+                    {item.ruTitle}
+                </MovieLink>
             )}
         </Container>
     );

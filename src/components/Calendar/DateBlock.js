@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { Context } from '../Context';
-import Label from './Label';
+import Label from '../Styled/Label';
 import DatesItem from './DatesItem';
 
 const Wrapper = styled.div`
@@ -33,6 +33,7 @@ const DateBlock = () => {
     const {
         calendar: {
             dateArr,
+            activeDate,
             setActiveDate,
         },
         reserved: {
@@ -42,7 +43,7 @@ const DateBlock = () => {
     } = useContext(Context);
 
     // выбор даты
-    const hanleSelectedDay = value => {
+    const handleSelectedDay = value => {
         setActiveDate(value);
         // сброс резерва при смене даты
         if (reserved) {
@@ -66,8 +67,9 @@ const DateBlock = () => {
             <Items  id="date-block">
                 {dateArr.map((item, i) =>
                     <DatesItem key={i}
-                        dateParam={item}
-                        hanleSelectedDay={hanleSelectedDay}
+                        param={item}
+                        activeItem={activeDate}
+                        handleSelectedItem={handleSelectedDay}
                     />
                 )}
             </Items>

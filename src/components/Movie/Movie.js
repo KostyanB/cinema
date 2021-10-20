@@ -12,6 +12,7 @@ import Odeum from '../Odeum';
 import Total from '../Total';
 import { ErrorLoad, Preloader } from '../Styled/Preloader';
 import Page404 from '../Page404';
+
 // styled
 const Wrapper = styled.section`
     width: 100vw;

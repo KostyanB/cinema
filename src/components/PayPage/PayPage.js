@@ -34,14 +34,21 @@ const PayPage = () => {
         }
     } = useContext(Context);
 
-    const { resDate, resMovie, resCinema, resSession, resPlaces } = reserved;
+    const {
+        resDate,
+        resMovie,
+        resCinema,
+        resSession,
+        resPlaces
+    } = reserved;
 
+    // titles preparation
     const ticketCount = resPlaces.length;
     const ticketCountTitle = declOfNum(ticketCount, ['билет', 'билета', 'билетов']);
     const movieTitle = moviesObj[resMovie].ruTitle;
     const formatedDate = formatDate(resDate.date);
     const sessionTitle = declOfNum(+resSession.substring(0, 2), ['час', 'часа', 'часов']);
-    const placesStr = resPlaces.reverse()
+    const placesString = resPlaces.reverse()
         .reduce((acc, item) => acc += ` ряд ${item[0]} место ${item[1]},`, '')
         .slice(0, -1);
 
@@ -52,7 +59,7 @@ const PayPage = () => {
             <Text>На фильм "{movieTitle}"</Text>
             <Text>{formatedDate}, сеанс в {resSession} {sessionTitle}</Text>
             <Text>Кинотеатр: {resCinema}</Text>
-            <Text>Вы бронируете: {placesStr}</Text>
+            <Text>Вы бронируете: {placesString}</Text>
             <Text>Сумма к оплате: {localTotal}</Text>
         </Container>
     );

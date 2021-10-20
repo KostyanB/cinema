@@ -6,8 +6,6 @@ import screen from '../../img/screen.svg';
 import { Container } from '../Styled/Container';
 import SeatBlock from './SeatBlock';
 import Legend from './Legend';
-//env
-const { auditorium, free, scroll } = env.colors;
 // styled
 const Wrapper = styled(Container)`
     display: flex;
@@ -16,7 +14,7 @@ const Wrapper = styled(Container)`
     flex-direction: column;
     margin-top: 61px;
     padding: 50px 70px 64px;
-    background: ${auditorium};
+    background: ${props => props.colors.background};
     border-radius: 10px;
     overflow-x: auto;
     &::-webkit-scrollbar {
@@ -24,7 +22,7 @@ const Wrapper = styled(Container)`
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: ${free};
+        background-color: ${props => props.colors.scrollBar};
         border-radius: 100px;
     }
 
@@ -36,7 +34,7 @@ const Screen = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto 21px;
-    border-top: 5px solid ${scroll};
+    border-top: 5px solid ${props => props.color};
     border-radius: 3px;
     width: 1018px;
 
@@ -47,13 +45,21 @@ const Screen = styled.div`
     }
 `;
 
-const Odeum = () => (
-        <Wrapper>
-            <Screen>
+const Odeum = () => {
+    const {
+        auditorium: background,
+        free: scrollBar,
+        scroll: color
+    } = env.colors;
+
+    return (
+        <Wrapper colors={{background, scrollBar}}>
+            <Screen color={color}>
                 <img src={screen} alt=""/>
             </Screen>
             <SeatBlock/>
             <Legend/>
         </Wrapper>
-);
+    );
+}
 export default Odeum;

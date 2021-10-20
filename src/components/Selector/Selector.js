@@ -42,7 +42,11 @@ const Selector = ({
         };
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
-    }, [thisSelector, setOpenSelector, selectorName]);
+    }, [
+        thisSelector,
+        setOpenSelector,
+        selectorName
+    ]);
 
     return (
         <Wrapper ref={thisSelector}>

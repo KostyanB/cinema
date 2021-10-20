@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
-import { Context } from '../Context';
-
-const { orange, brown, rectangle } = env.colors;
-const { label: labelFont, date: dateFont, day: dayFont } = env.fonts.calendarFonts;
 
 const Item = styled.li`
     align-self: left;
     width: 90px;
     height: 90px;
-    border: 1px solid ${rectangle};
+    border: 1px solid ${props => props.color.rectangle};
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
@@ -27,43 +23,41 @@ const Item = styled.li`
     }
 
     &:hover, :active {
-        background-color: ${orange};
-        color: ${brown};
+        background-color: ${props => props.color.orange};
+        color: ${props => props.color.brown};
     }
 `;
 const Month = styled.span`
-    font-size: ${labelFont.size};
-    line-height: ${labelFont.line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
 `;
 const Day = styled.span`
-    font-size: ${dateFont.size};
-    line-height: ${dateFont.line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
     font-weight: 900;
 `;
 const WeekDay = styled.span`
-    font-size: ${dayFont.size};
-    line-height: ${dayFont.line};
+    font-size: ${props => props.size};
+    line-height: ${props => props.line};
 `;
 
-const DatesItem = ({ dateParam, hanleSelectedDay }) => {
-    const { monthName, dayName, dayNum } = dateParam;
+const DatesItem = ({ param, activeItem, handleSelectedItem }) => {
+    const { monthName, dayName, dayNum } = param;
+    const { orange, brown, rectangle } = env.colors;
+    const { label: monthFont, date: dateFont, day: dayFont } = env.fonts.calendarFonts;
 
-    const {
-        calendar: {
-            activeDate,
-        },
-    } = useContext(Context);
-
-    const activeStyle = (dayNum === activeDate?.dayNum) ? {
+    const activeStyle = (dayNum === activeItem?.dayNum) ? {
         backgroundColor: orange,
         color: brown
     } : {};
 
     return (
-        <Item style={activeStyle} onClick={() => hanleSelectedDay(dateParam)}>
-            <Month>{monthName}</Month>
-            <Day>{dayNum}</Day>
-            <WeekDay>{dayName}</WeekDay>
+        <Item style={activeStyle}
+            onClick={() => handleSelectedItem(param)}
+            color={{orange, brown, rectangle}}>
+            <Month size={monthFont.size} line={monthFont.line}>{monthName}</Month>
+            <Day size={dateFont.size} line={dateFont.line}>{dayNum}</Day>
+            <WeekDay size={dayFont.size} line={dayFont.line}>{dayName}</WeekDay>
         </Item>
     )
 }
