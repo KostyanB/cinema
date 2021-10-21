@@ -26,7 +26,7 @@ const SessionWrap = styled.div`
     position: relative;
     width: 108px;
 `;
-//************************************** */
+//**************************************
 const SessionBlock = () => {
     const {
         calendar: {
@@ -52,14 +52,13 @@ const SessionBlock = () => {
     useEffect(() => {
         if (sessionsArr) {
             if (reserved) {
-                setActiveSession(reserved.resSession);
+                setActiveSession(reserved.reservedSession);
             } else if (!sessionsArr.includes(activeSession)) {
                 setActiveSession(sessionsArr[0]);
             }
         }
     }, [setActiveSession, reserved, activeSession, sessionsArr]);
 
-    //********************************** */
     return (
         <Wrapper>
             <Label>Время</Label>

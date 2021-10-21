@@ -5,6 +5,12 @@ import { Container } from '../Styled/Container';
 import { ClockIcon } from '../Styled/Icons/Icons';
 import RateIcon from '../../img/imdb.png';
 
+const {
+    mainText: { size: mainSize, line: mainLine },
+    mainFonts: {
+        subtitle: { size: subSize, line: subLine }
+    }
+} = env.fonts;
 //styled
 const Wrapper = styled(Container)`
     display: flex;
@@ -18,8 +24,8 @@ const Timing = styled.div`
 
     span {
         margin-left: 14px;
-        font-size: ${props => props.font.mainSize};
-        line-height: ${props => props.font.mainLine};
+        font-size: ${mainSize};
+        line-height: ${mainLine};
     }
 `;
 const Rating = styled.div`
@@ -34,26 +40,18 @@ const Rating = styled.div`
 `;
 const Rate = styled.p`
     margin-left: 12px;
-    font-size: ${props => props.fonts.subSize};
-    line-height: ${props => props.fonts.subLine};
+    font-size: ${subSize};
+    line-height: ${subLine};
     font-weight: bold;
 
     span {
         margin-left: 12px;
-        font-size: ${props => props.fonts.mainSize};
-        line-height: ${props => props.fonts.mainLine};
+        font-size: ${mainSize};
+        line-height: ${mainLine};
     }
 `;
-
+//******************************
 const Details = ({ selectMovie }) => {
-    const {
-        size: mainSize,
-        line: mainLine
-    } = env.fonts.mainFont;
-    const {
-        size: subSize,
-        line: subLine
-    } = env.fonts.mainFonts.subtitle;
     const {
         timing,
         imdbRate
@@ -61,13 +59,13 @@ const Details = ({ selectMovie }) => {
 
     return (
         <Wrapper>
-            <Timing font={{mainSize, mainLine}}>
+            <Timing>
                 <ClockIcon width={20} height={20}/>
                 <span>{timing} мин.</span>
             </Timing>
             <Rating>
                 <img src={RateIcon} alt="Imdb imdbRate"/>
-                <Rate fonts={{mainSize, mainLine, subSize, subLine}}>
+                <Rate>
                     {imdbRate}<span>/ 10</span>
                 </Rate>
             </Rating>

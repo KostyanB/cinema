@@ -7,7 +7,7 @@ import { useReserveTicket } from '../Hooks/useReserveTicket';
 
 export const Context = createContext();
 
-export const ContextProvider = (props) => {
+export const ContextProvider = props => {
     const getMovies = useGetMoviesDb();
     // const getSessions = useGetSessionsDb();
     const backgroundImg = useBackgroundImg();
@@ -26,4 +26,3 @@ export const ContextProvider = (props) => {
         </Context.Provider>
     );
 };
-

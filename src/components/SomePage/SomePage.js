@@ -5,15 +5,15 @@ import env from '../../env.json';
 import { Context } from '../Context';
 import { Container } from '../Styled/Container';
 
+const { size, line } = env.fonts.mainFonts.subtitle;
 //styled
 const Title = styled.h2`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${size};
+    line-height: ${line};
     margin-bottom: 15px;
 `;
-
+//*********************************
 const SomePage = () => {
-    const { size, line } = env.fonts.mainFonts.subtitle;
     const location = useLocation();
 
     const {
@@ -24,7 +24,7 @@ const SomePage = () => {
 
     return (
         <Container>
-            <Title size ={size} line={line}>
+            <Title>
                 {env.headNav[location.pathname.slice(1)]}
             </Title>
         </Container>

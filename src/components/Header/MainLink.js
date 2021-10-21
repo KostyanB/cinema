@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import env from '../../env.json';
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '../Styled/Icons/Icons';
+
 // styled
 const LogoLink = styled(Link)`
     -ms-grid-column: 1;
@@ -16,7 +17,7 @@ const LogoLink = styled(Link)`
     }
 
     &:hover {
-        color: ${env.colors.orange};
+        color: ${env.colors.hoverColor};
     }
 `;
 

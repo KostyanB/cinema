@@ -4,25 +4,35 @@ import env from '../../env.json';
 import { Context } from '../Context';
 import { SeatIcon } from '../Styled/Icons/Icons';
 
-const { orange: activeColor, booked: bookedColor, free: freeColor } = env.colors;
-
+const {
+    selectedPlace,
+    bookedPlace,
+    freePlace
+} = env.colors;
+// styled
 const PlaceWrap = styled.div`
     width: ${props => props.size};
     height: ${props => props.size};
-    cursor: ${props => (props.status === 'isBooked') ? 'not-allowed' : 'pointer'};
+    cursor: ${props => (props.status === 'isBooked') ?
+        'not-allowed' :
+            'pointer'
+    };
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${props => (props.status === 'isBooked') ? bookedColor :
-        (props.status === 'isReserved') ? activeColor :
-            freeColor
+    color: ${props => (props.status === 'isBooked') ? bookedPlace :
+        (props.status === 'isReserved') ? selectedPlace :
+            freePlace
     };
 
     &:hover , :active {
-        color: ${props => (props.status === 'isBooked') ? bookedColor : activeColor};
+        color: ${props => (props.status === 'isBooked') ?
+            bookedPlace :
+                selectedPlace
+        };
     }
 `;
-
+//************************************
 const Seat = ({ coord, status }) => {
     const [ row, place ] = coord;
     const {
@@ -44,7 +54,13 @@ const Seat = ({ coord, status }) => {
             return;
         } else {
             if (status !== 'isReserved') { // добавление в резерв
-                addReserved({coord, activeDate, activeCinema, activeSession, activeMovie});
+                addReserved({
+                    coord,
+                    activeDate,
+                    activeCinema,
+                    activeSession,
+                    activeMovie
+                });
             } else { // удаление из резерва
                 delReserved(...coord);
             }
@@ -58,7 +74,10 @@ const Seat = ({ coord, status }) => {
             onClick={handleReserved}
             status={status}
         >
-            <SeatIcon name={`ряд ${row}, место ${place}`} width={36} height={29}/>
+            <SeatIcon name={`ряд ${row}, место ${place}`}
+                width={36}
+                height={29}
+            />
         </PlaceWrap>
     )
 }

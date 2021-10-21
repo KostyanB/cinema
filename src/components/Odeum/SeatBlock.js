@@ -57,7 +57,9 @@ const SeatBlock = () => {
         if (session) {
             if ((row in session) && (session[row].includes(place))) {
                 return 'isBooked';
-            } else if (reserved && reserved.resPlaces.find(item => (item[0] === row && item[1] === place))) {
+            } else if (reserved && reserved.reservedPlaces
+                .find(item => (item[0] === row && item[1] === place)))
+            {
                 return 'isReserved';
             } else {
                 return '';

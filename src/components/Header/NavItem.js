@@ -6,7 +6,7 @@ import env from '../../env.json';
 const Item = styled.li`
     cursor: pointer;
     .active, :hover, :active {
-        color: ${env.colors.orange};
+        color: ${env.colors.hoverColor};
     }
 `;
 

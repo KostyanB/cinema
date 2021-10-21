@@ -4,7 +4,9 @@ import env from '../../env.json';
 // components
 import NavItem from './NavItem';
 import { MenuIcon } from '../Styled/Icons/Icons';
+
 //styled
+const { hoverColor, groundColor, mainColor } = env.colors;
 const Wrapper = styled.nav`
     position: relative;
     display: -ms-flexbox;
@@ -24,7 +26,7 @@ const Nav = styled.ul`
         flex-direction: column;
         align-items: baseline;
         gap: 10px;
-        background-color: ${props => props.color};
+        background-color: ${groundColor};
         padding: 20px;
         border-radius: 5px;
         z-index: 101;
@@ -38,19 +40,18 @@ const MenuBtn = styled.button`
     display: none;
     width: 30px;
     height: 30px;
-    color: ${props => props.colors.main};
+    color: ${mainColor};
 
     &:hover , :active {
-        color: ${props => props.colors.hover};
+        color: ${hoverColor};
     }
 
     @media (max-width: 768px) {
         display: block;
     }
 `;
-
+/******************************* */
 const NavBar = () =>{
-    const { orange: hover, brown, mainText: main } = env.colors;
     const navArr = Object.entries(env.headNav);
     const [ isOpen, setIsOpen ] = useState(false);
 
@@ -71,10 +72,10 @@ const NavBar = () =>{
 
     return (
         <Wrapper  ref={rootEl}>
-            <MenuBtn onClick={toggleMenu} colors={{hover, main}}>
+            <MenuBtn onClick={toggleMenu}>
                 <MenuIcon width={30} height={25.5}/>
             </MenuBtn>
-            <Nav isOpen={isOpen} color={brown}>
+            <Nav isOpen={isOpen}>
                 {navArr.map((item, key) => (
                     <NavItem key={key}
                         src={item[0]}
@@ -84,7 +85,6 @@ const NavBar = () =>{
                 ))}
             </Nav>
         </Wrapper>
-
     );
 }
 export default NavBar;

@@ -28,7 +28,7 @@ const Items = styled.ul`
         flex-grow: 1;
     }
 `;
-
+//****************************
 const DateBlock = () => {
     const {
         calendar: {
@@ -54,11 +54,15 @@ const DateBlock = () => {
      // ставим активную дату от наличия резерва
     useEffect(() => {
         if (reserved) {
-            setActiveDate(reserved.resDate);
+            setActiveDate(reserved.reservedDate);
         } else {
             // setActiveDate(dateArr[0]);
         }
-    }, [dateArr, reserved, setActiveDate]);
+    }, [
+        dateArr,
+        reserved,
+        setActiveDate
+    ]);
 
     //*************************************** */
     return (

@@ -48,7 +48,7 @@ const Movie = () => {
 
         if (sessionsDb) {
             setActiveMovieSessions(sessionsDb[movie]);
-            if (reserved && movie !== reserved.resMovie) {
+            if (reserved && movie !== reserved.reservedMovie) {
                 clearReserved();
             }
     }

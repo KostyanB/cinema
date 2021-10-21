@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 
+const {
+    selectorFill,
+    hoverColor,
+    borderColor
+} = env.colors;
 
+// styled
 const List = styled.ul`
     display: block;
     position: absolute;
@@ -10,8 +16,8 @@ const List = styled.ul`
     overflow: auto;
     width: 100%;
     z-index: 10;
-    background: ${props => props.colors.background};
-    border: 1px solid ${props => props.colors.border};
+    background: ${selectorFill};
+    border: 1px solid ${borderColor};
     border-top: none;
     padding: 0;
     border-bottom-left-radius: 5px;
@@ -23,10 +29,10 @@ const List = styled.ul`
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: ${props => props.colors.hover};
+        background-color: ${hoverColor};
         border-radius: 100px;
     }
-    `;
+`;
 const Li = styled.li`
     cursor: pointer;
 
@@ -35,29 +41,20 @@ const Li = styled.li`
     }
 
     &:hover {
-        color: ${props => props.color};
+        color: ${hoverColor};
     }
-    `;
+`;
 
-const SelectList = ({ items, handleSelection }) => {
-    const {
-        selectorFill: background,
-        orange: hover,
-        rectangle: border
-    } = env.colors;
-
-    return (
-        <List className="selector"
-            colors={{background, hover, border}}
-        >
-            {items.map((item, i) =>
-                <Li key={i}
-                    id={item}
-                    onClick={() => handleSelection(item)}
-                    color={hover}
-                >{item}</Li>
-            )}
-        </List>
-    );
-}
+const SelectList = ({ items, handleSelection }) => (
+    <List className="selector">
+        {items.map((item, i) =>
+            <Li key={i}
+                id={item}
+                onClick={() => handleSelection(item)}
+            >
+                {item}
+            </Li>
+        )}
+    </List>
+)
 export default SelectList;

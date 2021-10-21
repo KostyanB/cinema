@@ -5,6 +5,27 @@ import env from '../../env.json';
 import { Context } from '../Context';
 import { Container } from '../Styled/Container';
 
+const {
+    colors: {
+        disableColor,
+        borderColor: activeColor,
+        hoverColor,
+        mainColor
+    },
+    fonts: {
+        totalFonts: {
+            label: {
+                size: titleSize,
+                line: titleLine
+            },
+            sum: {
+                size: sumSize,
+                line: sumLine
+            }
+        }
+    }
+} = env;
+
 // styled
 const Wrapper = styled(Container)`
     display: flex;
@@ -24,15 +45,15 @@ const SumTitle = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    font-size: ${props => props.fonts.titleSize};
-    line-height: ${props => props.fonts.titleLine};
+    font-size: ${titleSize};
+    line-height: ${titleLine};
     @media (max-width: 440px) {
         align-items: center;
     }
 `;
 const Sum = styled.div`
-    font-size: ${props => props.fonts.sumSize};
-    line-height: ${props => props.fonts.sumLine};
+    font-size: ${sumSize};
+    line-height: ${sumLine};
 `;
 const PayBtn = styled(Link)`
     display: flex;
@@ -40,47 +61,28 @@ const PayBtn = styled(Link)`
     align-items: center;
     width: 254px;
     height: 69px;
-    background: ${props => (props.disable === 'true') ?
-        props.colors.disableColor :
-            props.colors.hoverColor
-        };
-    border: 1px solid ${props => props.colors.hoverColor};
+    background: ${props => (props.disable === 'true') ? disableColor : hoverColor};
+    border: 1px solid ${hoverColor};
     border-radius: 5px;
-    font-size: ${props => props.fonts.titleSize};
-    line-height: ${props => props.fonts.titleLine};
+    font-size: ${titleSize};
+    line-height: ${titleLine};
     pointer-events: ${props => (props.disable === 'true') ? 'none' : 'auto'};
 
     &:hover, :active {
-        color: ${props => props.colors.hoverColor};
+        color: ${hoverColor};
     }
 
     &:hover {
-        background: ${props => props.colors.mainColor};
+        background: ${mainColor};
     }
 
     &:active {
-        background: ${props => props.colors.activeColor};
+        background: ${activeColor};
     }
 `;
 
 const Total = () => {
     const [ disable, setDisable ] = useState(true);
-    const {
-        disable: disableColor,
-        rectangle: activeColor,
-        orange: hoverColor,
-        mainText: mainColor
-    } = env.colors;
-    const {
-        label: {
-            size: titleSize,
-            line: titleLine
-        },
-        sum: {
-            size: sumSize,
-            line: sumLine
-        }
-    } = env.fonts.totalFonts;
 
     const {
         reserved: {
@@ -92,8 +94,8 @@ const Total = () => {
     // вкл кнопку если все выбраны
     useEffect(() => {
         if (reserved) {
-            const { resPlaces, ...resParams } = reserved;
-            const checkArr = [ ...Object.values(resParams), resPlaces.length ];
+            const { reservedPlaces, ...resParams } = reserved;
+            const checkArr = [ reservedPlaces.length, ...Object.values(resParams) ];
             checkArr.every(item => item) && setDisable(false);
             checkArr.some(item => !item) && setDisable(true);
         } else {
@@ -107,17 +109,15 @@ const Total = () => {
     //**************************** */
     return (
         <Wrapper>
-            <SumTitle fonts={{ titleSize, titleLine }}>
+            <SumTitle>
                 <span>Всего к оплате</span>
-                <Sum fonts={{ sumSize, sumLine }}>
+                <Sum>
                     {localTotal}
                 </Sum>
             </SumTitle>
             <PayBtn disable={`${disable}`}
                 to={'/paypage'}
                 onKeyDown={checkEnterKey}
-                colors={{ disableColor, activeColor, hoverColor, mainColor }}
-                fonts={{ titleSize, titleLine }}
             >
                 Перейти к оплате
             </PayBtn>

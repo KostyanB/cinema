@@ -5,6 +5,10 @@ import { Container } from '../Styled/Container';
 import { PlayIcon } from '../Styled/Icons/Icons';
 import Fancybox from './Fancybox';
 
+const {
+    mainText,
+    mainFonts: { title, subtitle }
+} = env.fonts;
 //styled
 const Film = styled(Container)`
     display: flex;
@@ -24,19 +28,19 @@ const Film = styled(Container)`
     }
 `;
 const Title = styled.h1`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${title.size};
+    line-height: ${title.line};
     margin-bottom: 23px;
 `;
 const SubTitle = styled.small`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${subtitle.size};
+    line-height: ${subtitle.line};
     margin-bottom: 11px;
     opacity: 0.5;
 `;
 const Description = styled.p`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${mainText.size};
+    line-height: ${mainText.line};
     margin-bottom: 51px;
 
     @media (max-width: 768px) {
@@ -51,16 +55,8 @@ const Trailer = styled.button`
         margin-bottom: 20px;
     }
 `;
-
+//********************************
 const FilmInfo = ({ selectMovie }) => {
-    const {
-        size: mainSize,
-        line: mainLine
-    } = env.fonts.mainFont;
-    const {
-        title,
-        subtitle
-    } = env.fonts.mainFonts;
     const {
         enTitle,
         ruTitle,
@@ -71,15 +67,9 @@ const FilmInfo = ({ selectMovie }) => {
     return (
         <Film>
             <div>
-                <SubTitle size={subtitle.size} line={subtitle.line}>
-                    {enTitle}
-                </SubTitle>
-                <Title size={title.size} line={title.line}>
-                    {ruTitle}
-                </Title>
-                <Description size={mainSize} line={mainLine}>
-                    {description}
-                </Description>
+                <SubTitle>{enTitle}</SubTitle>
+                <Title>{ruTitle}</Title>
+                <Description>{description}</Description>
             </div>
             <Fancybox>
                 <Trailer data-fancybox="video-gallery"

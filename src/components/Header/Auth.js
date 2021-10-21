@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 import userImg from '../../img/user.jpg';
+
+const { size, line } = env.fonts.calendarFonts.label;
 // styled
 const Wrapper = styled.div`
     width: max-content;
@@ -20,8 +22,8 @@ const Wrapper = styled.div`
     }
 `;
 const UserName = styled.p`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${size};
+    line-height: ${line};
 `;
 const Button = styled.button`
     background: url(${userImg});
@@ -32,15 +34,11 @@ const Button = styled.button`
     background-size: cover;
     background-position: center;
 `;
-
-const Auth = () => {
-    const { size, line } = env.fonts.calendarFonts.label;
-
-    return (
-        <Wrapper>
-            <UserName size={size} line={line}>Привет Друг!</UserName>
-            <Button></Button>
-        </Wrapper>
-    );
-}
+//*************************
+const Auth = () => (
+    <Wrapper>
+        <UserName>Привет Друг!</UserName>
+        <Button></Button>
+    </Wrapper>
+)
 export default Auth;

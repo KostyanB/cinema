@@ -52,7 +52,7 @@ export const SeatIcon = ({ name = "Кресло", color = "currentColor", opacit
     </IconStyle>
 )
 
-export const ScreenLight = ({ name, color = env.colors.screenLight, width = 914, height = 67 }) => (
+export const ScreenLight = ({ name, color = env.colors.screenLightColor, width = 914, height = 67 }) => (
     <IconStyle viewBox="0 0 914 67" fill="none" width={width} height={height}>
         <title>{name}</title>
         <path d="M0 67L73.04 0H840.96L914 67H0Z" fill="url(#paint0_linear)"/>

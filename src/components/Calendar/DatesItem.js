@@ -2,11 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../env.json';
 
+const {
+    colors: { hoverColor, groundColor, borderColor },
+    fonts: {
+        calendarFonts: { label: month, date, day }
+    }
+} = env;
+// styled
 const Item = styled.li`
     align-self: left;
     width: 90px;
     height: 90px;
-    border: 1px solid ${props => props.color.rectangle};
+    border: 1px solid ${borderColor};
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
@@ -23,41 +30,39 @@ const Item = styled.li`
     }
 
     &:hover, :active {
-        background-color: ${props => props.color.orange};
-        color: ${props => props.color.brown};
+        background-color: ${hoverColor};
+        color: ${groundColor};
     }
 `;
 const Month = styled.span`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${month.size};
+    line-height: ${month.line};
 `;
 const Day = styled.span`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${date.size};
+    line-height: ${date.line};
     font-weight: 900;
 `;
 const WeekDay = styled.span`
-    font-size: ${props => props.size};
-    line-height: ${props => props.line};
+    font-size: ${day.size};
+    line-height: ${day.line};
 `;
-
+//******************************
 const DatesItem = ({ param, activeItem, handleSelectedItem }) => {
     const { monthName, dayName, dayNum } = param;
-    const { orange, brown, rectangle } = env.colors;
-    const { label: monthFont, date: dateFont, day: dayFont } = env.fonts.calendarFonts;
 
     const activeStyle = (dayNum === activeItem?.dayNum) ? {
-        backgroundColor: orange,
-        color: brown
+        backgroundColor: hoverColor,
+        color: groundColor
     } : {};
 
     return (
         <Item style={activeStyle}
             onClick={() => handleSelectedItem(param)}
-            color={{orange, brown, rectangle}}>
-            <Month size={monthFont.size} line={monthFont.line}>{monthName}</Month>
-            <Day size={dateFont.size} line={dateFont.line}>{dayNum}</Day>
-            <WeekDay size={dayFont.size} line={dayFont.line}>{dayName}</WeekDay>
+        >
+            <Month>{monthName}</Month>
+            <Day>{dayNum}</Day>
+            <WeekDay>{dayName}</WeekDay>
         </Item>
     )
 }

@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import env from '../../env.json';
 
 export const useGetMoviesDb = () => {
-
     const [ moviesDb, setMoviesDb ] = useState(null);
     const [ moviesObj, setMoviesObj ] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -33,17 +32,9 @@ export const useGetMoviesDb = () => {
 
     useEffect(() => getFetch(), [getFetch]);
 
-    // const getMoviesDb = async () => {
-    //     const json = await fetch(env.backend.moviesDbUrl);
-    //     const res = await json.json();
-    //     handleMoviesDb(res);
-    // };
-
     return {
         moviesDb,
         moviesObj,
-        handleMoviesDb,
-        // getMoviesDb,
         error,
         loading
     };

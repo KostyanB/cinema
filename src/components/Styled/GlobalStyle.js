@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import env from '../../env.json';
-const { brown, scroll } = env.colors;
-const { size, line } = env.fonts.mainFont;
+const { groundColor, mainScroll } = env.colors;
+const { size, line } = env.fonts.mainText;
 
 export const GlobalStyle = createGlobalStyle `
     /****************** fonts ************************ */
@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle `
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: ${scroll};
+            background-color: ${mainScroll};
             border-radius: 100px;
         }
     }
@@ -48,12 +48,12 @@ export const GlobalStyle = createGlobalStyle `
         min-width: 320px;
         min-height: 100vh;
         margin: 0;
-        background-color: ${brown};
+        background-color: ${groundColor};
         font-family: "Roboto", Arial, sans-serif;
         font-size: ${size};
         line-height: ${line}
         font-weight: 400;
-        color: ${env.colors.mainText};
+        color: ${env.colors.mainColor};
         overflow-x: hidden;
     }
 

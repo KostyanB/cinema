@@ -6,6 +6,7 @@ import { Container } from '../Styled/Container';
 import DateBlock from './DateBlock';
 import CinemaBlock from './CinemaBlock';
 import SessionBlock from './SessionBlock';
+
 // styled
 const Wrapper = styled(Container)`
     padding-top: 49px;
@@ -20,7 +21,7 @@ const Wrapper = styled(Container)`
     }
 `;
 
-//********************************************* */
+//****************************************
 const Calendar = () => (
     <Wrapper>
         <DateBlock/>

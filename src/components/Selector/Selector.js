@@ -7,13 +7,14 @@ const Wrapper = styled.div`
     position: relative;
     width: 100%;
 `;
-//******************************* */
+//****************************************
 const Selector = ({
     items,
     handleSelectParam,
     activeSelector,
     name
 }) => {
+
     const selectorName = `${name}-selector`;
     const thisSelector = useRef(null);
     const [ openSelector, setOpenSelector ] = useState(false);

@@ -58,12 +58,17 @@ const CinemaBlock = () => {
     useEffect(() => {
         if (activeMovieSessions) {
             if (reserved) {
-                setActiveCinema(reserved.resCinema);
+                setActiveCinema(reserved.reservedCinema);
             } else {
                 // setActiveCinema(cinemasList[0]);
             }
         }
-    }, [activeMovieSessions, reserved, setActiveCinema, cinemasList]);
+    }, [
+        activeMovieSessions,
+        reserved,
+        setActiveCinema,
+        cinemasList
+    ]);
 
     //****************************** */
     return (

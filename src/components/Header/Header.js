@@ -7,6 +7,7 @@ import { Container } from '../Styled/Container';
 import MainLink from './MainLink';
 import NavBar from './NavBar';
 import Auth from './Auth';
+
 // styled
 const HeaderStyle = styled.header`
     height: fit-content;
@@ -35,22 +36,22 @@ const BackImage = styled.div`
     left: 0;
     z-index: -1;
 `;
-
+//*****************************************
 const Header = () => {
     const {
         backgroundImg: { backgroundImg, setBackgroundImg },
         calendar: { activeMovie }
     } = useContext(Context);
-    const { gradient, brown } = env.colors;
+
+    const { gradient, groundColor } = env.colors;
+    const pageBackground = `
+        linear-gradient(180deg, ${gradient} 0%, ${groundColor} 85.62%),
+        url(../../db/moviesImg/${backgroundImg}) no-repeat center top / cover;
+    `;
 
     useEffect(() => {
         activeMovie || setBackgroundImg('bg.jpg');
     }, [activeMovie, setBackgroundImg]);
-
-    const pageBackground = `
-        linear-gradient(180deg, ${gradient} 0%, ${brown} 85.62%),
-        url(../../db/moviesImg/${backgroundImg}) no-repeat center top / cover;
-    `;
 
     return (
         <HeaderStyle>

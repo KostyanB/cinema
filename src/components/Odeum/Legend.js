@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import env from '../../env.json';
 import { SeatIcon } from '../Styled/Icons/Icons';
 
+const { size, line } = env.fonts.calendarFonts.label;
 // styled
 const Wrapper = styled.div`
     padding-top: 22px;
@@ -13,8 +14,8 @@ const Wrapper = styled.div`
     span {
         display: flex;
         align-items: center;
-        font-size: ${props => props.size};
-        line-height: ${props => props.line};
+        font-size: ${size};
+        line-height: ${line};
         margin-left: 15px;
     }
     span:not(:last-of-type) {
@@ -24,23 +25,19 @@ const Wrapper = styled.div`
 
 const Legend = () => {
     const {
-        free,
-        orange,
-        booked
+        freePlace,
+        selectedPlace,
+        bookedPlace
     } = env.colors;
-    const {
-        size,
-        line
-    } = env.fonts.calendarFonts.label;
 
     return (
-        <Wrapper size={size} line={line}>
-            <SeatIcon name="Свободно" color={free} width={36} height={29} />
-            <span style={{color: free}}>Свободно</span>
-            <SeatIcon name="Выбрано" color={orange} width={36} height={29} />
-            <span style={{color: orange}}>Выбрано</span>
-            <SeatIcon name="Занято" color={booked} width={36} height={29} />
-            <span style={{color: booked}}>Занято</span>
+        <Wrapper>
+            <SeatIcon name="Свободно" color={freePlace} width={36} height={29} />
+            <span style={{color: freePlace}}>Свободно</span>
+            <SeatIcon name="Выбрано" color={selectedPlace} width={36} height={29} />
+            <span style={{color: selectedPlace}}>Выбрано</span>
+            <SeatIcon name="Занято" color={bookedPlace} width={36} height={29} />
+            <span style={{color: bookedPlace}}>Занято</span>
         </Wrapper>
     );
 }
