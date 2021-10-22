@@ -8,9 +8,11 @@ const { size, line } = env.fonts.calendarFonts.label;
 const Wrapper = styled.div`
     width: max-content;
     height: 100%;
+    margin-left: auto;
     display: flex;
     align-items: center;
     gap: 11px;
+
 
     @media (max-width: 768px) {
         justify-self: center;

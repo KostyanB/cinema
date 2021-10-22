@@ -11,6 +11,10 @@ const Wrapper = styled.nav`
     position: relative;
     display: -ms-flexbox;
     display: flex;
+    margin-left: 57px;
+    @media (max-width: 768px) {
+        margin-left: 30px;
+    }
 `;
 const Nav = styled.ul`
     display: -webkit-box;

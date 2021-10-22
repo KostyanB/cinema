@@ -20,14 +20,11 @@ const Wrapper = styled(Container)`
     -webkit-box-align: center;
     -ms-flex-align: center;
         align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
     height: max-content;
     padding-top: 30px;
     padding-bottom: 30px;
 `;
-const BackImage = styled.div`
+const BackgroundImage = styled.div`
     width: 100vw;
     height: 814px;
     background: ${props => props.img};
@@ -60,7 +57,7 @@ const Header = () => {
                 <NavBar/>
                 <Auth/>
             </Wrapper>
-            <BackImage img={pageBackground}/>
+            <BackgroundImage img={pageBackground}/>
         </HeaderStyle>
     );
 }
