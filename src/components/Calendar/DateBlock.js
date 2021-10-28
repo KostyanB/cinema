@@ -5,7 +5,7 @@ import Label from '../Styled/Label';
 import DatesItem from './DatesItem';
 
 const Wrapper = styled.div`
-    width: 420px;
+    width: 410px;
 
     @media (max-width: 1240px) {
         flex-basis: 80%;
@@ -46,18 +46,12 @@ const DateBlock = () => {
     const handleSelectedDay = value => {
         setActiveDate(value);
         // сброс резерва при смене даты
-        if (reserved) {
-            clearReserved();
-        }
+        if (reserved) clearReserved();
     };
 
      // ставим активную дату от наличия резерва
     useEffect(() => {
-        if (reserved) {
-            setActiveDate(reserved.reservedDate);
-        } else {
-            // setActiveDate(dateArr[0]);
-        }
+        if (reserved) setActiveDate(reserved.reservedDate);
     }, [
         dateArr,
         reserved,

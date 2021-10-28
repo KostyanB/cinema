@@ -24,10 +24,10 @@ const Block = styled.div`
     margin-top: -10px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 54px;
+    margin-bottom: 40px;
 
     &:first-of-type {
-        margin: -10px auto 54px;
+        margin: -10px auto 45px;
         }
 
     @media (max-width: 1240px) {
@@ -65,7 +65,7 @@ const SeatBlock = () => {
                 return '';
             }
         }
-    }
+    };
 
     return (
         <>

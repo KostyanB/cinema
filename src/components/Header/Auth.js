@@ -26,6 +26,7 @@ const Wrapper = styled.div`
 const UserName = styled.p`
     font-size: ${size};
     line-height: ${line};
+    font-weight: normal;
 `;
 const Button = styled.button`
     background: url(${userImg});

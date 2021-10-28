@@ -30,18 +30,20 @@ const Film = styled(Container)`
 const Title = styled.h1`
     font-size: ${title.size};
     line-height: ${title.line};
+    font-weight: bold;
     margin-bottom: 23px;
 `;
-const SubTitle = styled.small`
+const SubTitle = styled.h2`
     font-size: ${subtitle.size};
     line-height: ${subtitle.line};
+    font-weight: normal;
     margin-bottom: 11px;
     opacity: 0.5;
 `;
 const Description = styled.p`
     font-size: ${mainText.size};
     line-height: ${mainText.line};
-    margin-bottom: 51px;
+    margin-bottom: 47px;
 
     @media (max-width: 768px) {
         flex-basis: 100%;

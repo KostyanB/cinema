@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import env from '../../env.json';
 import { Container } from '../Styled/Container';
 
 const Wrapper = styled(Container)`
@@ -7,7 +8,7 @@ const Wrapper = styled(Container)`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #f93c00;
+    color: ${env.colors.hoverColor};
     font-size: 30px;
 `;
 

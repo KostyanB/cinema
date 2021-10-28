@@ -13,15 +13,15 @@ const Wrapper = styled(Container)`
     padding-bottom: 64px;
     border-bottom: ${env.colors.underline};
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
 
     @media (max-width: 1240px) {
+        justify-content: space-between;
         flex-wrap: wrap;
     }
 `;
 
-//****************************************
+//***************************************
 const Calendar = () => (
     <Wrapper>
         <DateBlock/>

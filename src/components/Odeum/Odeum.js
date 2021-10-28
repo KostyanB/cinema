@@ -19,7 +19,10 @@ const Wrapper = styled(Container)`
     justify-content: space-between;
     flex-direction: column;
     margin-top: 61px;
-    padding: 50px 70px 64px;
+    padding-top: 40px;
+    padding-left: 76px;
+    padding-right: 67px;
+    padding-bottom: 39px;
     background: ${odeumColor};
     border-radius: 10px;
     overflow-x: auto;
@@ -41,8 +44,7 @@ const Screen = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto 21px;
-    border-top: 5px solid ${screenColor};
-    border-radius: 3px;
+    border-top: 10px solid ${screenColor};
     width: 1018px;
 
     img {

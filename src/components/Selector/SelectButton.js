@@ -11,7 +11,7 @@ const {
 //styled
 const Button = styled.button`
     position: relative;
-    padding: 8px 24px;
+    padding: 8px 20px 8px 18px;
     text-align: left;
     background-color: ${selectorFill};
     width: 100%;
@@ -48,7 +48,7 @@ const Button = styled.button`
 const SelectButton = ({ isOpen, title, toggleSelector }) => {
     const openBtnStyle = `
         border-bottom-color: ${hoverColor};
-        border-bottom-left-radius: 0;props => props.colors.
+        border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         &:after {
             margin-top: 6px;

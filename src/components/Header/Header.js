@@ -48,7 +48,10 @@ const Header = () => {
 
     useEffect(() => {
         activeMovie || setBackgroundImg('bg.jpg');
-    }, [activeMovie, setBackgroundImg]);
+    }, [
+        activeMovie,
+        setBackgroundImg
+    ]);
 
     return (
         <HeaderStyle>

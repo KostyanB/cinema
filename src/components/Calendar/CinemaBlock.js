@@ -6,9 +6,10 @@ import Selector from '../Selector';
 
 // styled
 const Wrapper = styled.div`
-    padding-left: clamp(20px ,7vw, 95px);
+    margin-left: 90px;
 
     @media (max-width: 1240px) {
+        margin-left: 0;
         padding-left: 0px;
         order: 3;
     }
@@ -49,19 +50,13 @@ const CinemaBlock = () => {
     const handleSelectedCinema = value => {
         setActiveCinema(value);
         // сброс резерва при смене кинотеатра
-        if (reserved) {
-            clearReserved();
-        }
+        if (reserved) clearReserved();
     };
 
     // ставим активный кинотеатр от наличия резерва
     useEffect(() => {
-        if (activeMovieSessions) {
-            if (reserved) {
-                setActiveCinema(reserved.reservedCinema);
-            } else {
-                // setActiveCinema(cinemasList[0]);
-            }
+        if (activeMovieSessions && reserved) {
+            setActiveCinema(reserved.reservedCinema);
         }
     }, [
         activeMovieSessions,

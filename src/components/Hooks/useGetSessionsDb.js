@@ -20,16 +20,9 @@ export const useGetSessionsDb = () => {
 
     useEffect(() => getFetch(), [getFetch]);
 
-    // const getSessionsDb = async () => {
-    //     const json = await fetch(env.backend.sessionsDbUrl);
-    //     const res = await json.json();
-    //     setSessionsDb(res);
-    // };
-
     return {
         sessionsDb,
         setSessionsDb,
-        // getSessionsDb,
         error,
         loading
     };

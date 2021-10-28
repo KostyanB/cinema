@@ -43,7 +43,7 @@ const SessionBlock = () => {
     // выбор сеанса
     const handleSelectedSession = value => {
         setActiveSession(value);
-        (reserved) && clearReserved();
+        if (reserved) clearReserved();
     };
 
     const sessionsArr = activeMovieSessions && Object.keys(activeMovieSessions);
@@ -57,7 +57,12 @@ const SessionBlock = () => {
                 setActiveSession(sessionsArr[0]);
             }
         }
-    }, [setActiveSession, reserved, activeSession, sessionsArr]);
+    }, [
+        setActiveSession,
+        reserved,
+        activeSession,
+        sessionsArr
+    ]);
 
     return (
         <Wrapper>

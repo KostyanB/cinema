@@ -24,7 +24,6 @@ const Item = styled.li`
     padding-top: 9px;
     transition: background-color 0.2s;
     cursor: pointer;
-    margin-bottom: 15px;
     &:not(:last-of-type) {
         margin-right: 15px;
     }

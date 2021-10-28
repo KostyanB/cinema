@@ -54,7 +54,7 @@ const MenuBtn = styled.button`
         display: block;
     }
 `;
-/******************************* */
+//******************************* */
 const NavBar = () =>{
     const navArr = Object.entries(env.headNav);
     const [ isOpen, setIsOpen ] = useState(false);

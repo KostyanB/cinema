@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     padding-top: 22px;
     display: flex;
     align-items: center;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
 `;
 const Title = styled.span`
