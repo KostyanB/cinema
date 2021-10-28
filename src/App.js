@@ -8,7 +8,7 @@ import Movies from './components/Movies';
 import Movie from './components/Movie';
 import SomePage from './components/SomePage';
 import PayPage from './components/PayPage';
-import Page404 from './components/Page404';
+import Page404 from './components/Styled/Page404';
 import { ErrorLoad, Preloader } from './components/Styled/Preloader';
 // hooks
 import { useGetMoviesDb } from './components/Hooks/useGetMoviesDb';

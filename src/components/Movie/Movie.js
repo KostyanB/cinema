@@ -5,13 +5,12 @@ import { Context } from '../Context';
 // hooks
 import { useGetSessionsDb } from '../Hooks/useGetSessionsDb';
 // components
-import Details from './Details';
-import FilmInfo from './FilmInfo';
-import Calendar from '../Calendar';
-import Odeum from '../Odeum';
-import Total from '../Total';
+import Description from './Description';
+import Calendar from './Calendar';
+import Odeum from './Odeum';
+import Total from './Total';
 import { ErrorLoad, Preloader } from '../Styled/Preloader';
-import Page404 from '../Page404';
+import Page404 from '../Styled/Page404';
 
 // styled
 const Wrapper = styled.section`
@@ -51,7 +50,7 @@ const Movie = () => {
             if (reserved && movie !== reserved.reservedMovie) {
                 clearReserved();
             }
-    }
+        }
     }, [
         selectMovie,
         setActiveMovie,
@@ -68,8 +67,7 @@ const Movie = () => {
         <>
         {selectMovie && sessionsDb &&
             <Wrapper>
-                <FilmInfo selectMovie={selectMovie}/>
-                <Details selectMovie={selectMovie}/>
+                <Description selectMovie={selectMovie}/>
                 <Calendar/>
                 <Odeum/>
                 <Total/>
