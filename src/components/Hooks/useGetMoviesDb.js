@@ -1,11 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import env from '../../env.json';
+import { useLoading } from './useLoading'
+import { fetchFromDb } from '../../functions/fetchFromDb';
 
 export const useGetMoviesDb = () => {
+    const { setLoading, setError } = useLoading();
     const [ moviesDb, setMoviesDb ] = useState(null);
     const [ moviesObj, setMoviesObj ] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     const handleMoviesDb = res => {
         const obj = {};
@@ -18,24 +19,16 @@ export const useGetMoviesDb = () => {
         setMoviesObj(obj);
     };
 
-    const getFetch = useCallback(async () => {
-        try {
-            setLoading(true);
-            const json = await fetch(env.backend.moviesDbUrl);
-            const res = await json.json();
-            handleMoviesDb(res);
-        } catch (err) {
-            setError(err);
-        }
-        setLoading(false);
-    }, []);
-
-    useEffect(() => getFetch(), [getFetch]);
+    useEffect(() => fetchFromDb({
+        url: env.backend.moviesDbUrl,
+        loadingFn: setLoading,
+        successFn: handleMoviesDb,
+        errorFn: setError
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }), []);
 
     return {
         moviesDb,
         moviesObj,
-        error,
-        loading
     };
 };

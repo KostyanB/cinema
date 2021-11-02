@@ -16,7 +16,7 @@ const Page404 = lazy(() => import('./components/Styled/Page404'));
 //************************************ */
 function App() {
   const {
-    getMovies: {
+    loading: {
       error,
       loading
     }

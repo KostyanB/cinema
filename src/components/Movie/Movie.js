@@ -23,13 +23,12 @@ const Wrapper = styled.section`
 //***************************** */
 const Movie = () => {
     const { movie } = useParams();
-    const getSessionsDb = useGetSessionsDb();
+    const { sessionsDb } = useGetSessionsDb();
     const {
-        sessionsDb,
-        error,
-        loading
-    } = getSessionsDb;
-    const {
+        loading: {
+            error,
+            loading
+        },
         getMovies: { moviesObj },
         backgroundImg: { setBackgroundImg },
         calendar: {

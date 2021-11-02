@@ -1,29 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import env from '../../env.json';
+import { useLoading } from './useLoading'
+import { fetchFromDb } from '../../functions/fetchFromDb';
 
 export const useGetSessionsDb = () => {
+    const { setLoading, setError } = useLoading();
     const [ sessionsDb, setSessionsDb ] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
-    const getFetch = useCallback(async () => {
-        try {
-            setLoading(true);
-            const json = await fetch(env.backend.sessionsDbUrl);
-            const res = await json.json();
-            setSessionsDb(res);
-        } catch (err) {
-            setError(err);
-        }
-        setLoading(false);
-    }, []);
-
-    useEffect(() => getFetch(), [getFetch]);
+    useEffect(() => fetchFromDb({
+        url: env.backend.sessionsDbUrl,
+        loadingFn: setLoading,
+        successFn: setSessionsDb,
+        errorFn: setError
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }), []);
 
     return {
         sessionsDb,
         setSessionsDb,
-        error,
-        loading
     };
 };
