@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import env from '../../../env.json';
 // components
-import { Container } from '../../Styled/Container';
+import Container from '../../Styled/Container';
 import DateBlock from './DateBlock';
 import CinemaBlock from './CinemaBlock';
 import SessionBlock from './SessionBlock';

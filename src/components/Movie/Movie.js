@@ -9,7 +9,8 @@ import Description from './Description';
 import Calendar from './Calendar';
 import Odeum from './Odeum';
 import Total from './Total';
-import { ErrorLoad, Preloader } from '../Styled/Preloader';
+import Preloader from '../Styled/Loaders/Preloader';
+import ErrorLoad from '../Styled/Loaders/ErrorLoad';
 import Page404 from '../Styled/Page404';
 
 // styled
@@ -23,7 +24,11 @@ const Wrapper = styled.section`
 const Movie = () => {
     const { movie } = useParams();
     const getSessionsDb = useGetSessionsDb();
-    const { sessionsDb, error, loading } = getSessionsDb;
+    const {
+        sessionsDb,
+        error,
+        loading
+    } = getSessionsDb;
     const {
         getMovies: { moviesObj },
         backgroundImg: { setBackgroundImg },
@@ -74,7 +79,7 @@ const Movie = () => {
             </Wrapper>
         }
         {loading && <Preloader/>}
-        {error && <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad>}
+        {error && <ErrorLoad/>}
         {moviesObj && !(movie in moviesObj) && <Page404/>}
         </>
     );

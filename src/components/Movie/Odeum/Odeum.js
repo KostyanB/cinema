@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import env from '../../../env.json';
 import screen from '../../../img/screen.svg';
 // components
-import { Container } from '../../Styled/Container';
+import Container from '../../Styled/Container';
 import SeatBlock from './SeatBlock';
 import Legend from './Legend';
 

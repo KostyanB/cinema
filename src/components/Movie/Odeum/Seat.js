@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import styled from 'styled-components';
 import env from '../../../env.json';
 import { Context } from '../../Context';
@@ -33,7 +33,8 @@ const PlaceWrap = styled.div`
     }
 `;
 //************************************
-const Seat = ({ coord, status }) => {
+const Seat = memo(function({ status, coord }) {
+    const placeSize = env.scheme.placeSize;
     const [ row, place ] = coord;
     const {
         calendar: {
@@ -68,9 +69,7 @@ const Seat = ({ coord, status }) => {
     };
 
     return (
-        <PlaceWrap size={`${env.scheme.placeSize}px`}
-            dataRow={row}
-            dataPlace={place}
+        <PlaceWrap size={`${placeSize}px`}
             onClick={handleReserved}
             status={status}
         >
@@ -79,6 +78,6 @@ const Seat = ({ coord, status }) => {
                 height={29}
             />
         </PlaceWrap>
-    )
-}
+    );
+})
 export default Seat;

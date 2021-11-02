@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Context';
 // components
-import { Container } from '../Styled/Container';
+import Container from '../Styled/Container';
 import MainLink from './MainLink';
 import NavBar from './NavBar';
 import Auth from './Auth';

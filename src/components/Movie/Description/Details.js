@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import env from '../../../env.json';
-import { Container } from '../../Styled/Container';
+import Container from '../../Styled/Container';
 import { ClockIcon } from '../../Styled/Icons/Icons';
 import RateIcon from '../../../img/imdb.png';
 

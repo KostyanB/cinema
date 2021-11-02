@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import env from '../../env.json';
 import { Context } from '../Context';
-import { Container } from '../Styled/Container';
+import Container from '../Styled/Container';
 
 const { size, line } = env.fonts.mainFonts.subtitle;
 //styled

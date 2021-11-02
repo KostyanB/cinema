@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Context } from '../Context';
 import env from '../../env.json';
 import { Link } from 'react-router-dom';
-import { Container } from '../Styled/Container';
+import Container from '../Styled/Container';
 
 const { size, line } = env.fonts.mainFonts.subtitle;
 //styled
@@ -40,7 +40,7 @@ const Movies = () => {
     return (
         <Container>
             <Title>Выберите фильм</Title>
-            {moviesDb.map(item =>
+            {moviesDb && moviesDb.map(item =>
                 <MovieLink to={`/movie/${item.id}`}
                     key={item.id}
                 >

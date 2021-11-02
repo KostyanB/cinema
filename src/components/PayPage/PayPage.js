@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import env from '../../env.json';
 import { Context } from '../Context';
 // functions
 import { formatDate } from '../../functions/formatDate';
 import { declOfNum } from '../../functions/declOfNum';
 // components
-import { Container } from '../Styled/Container';
-import { Link } from 'react-router-dom';
+import Container from '../Styled/Container';
 
 const {
     colors: { hoverColor },

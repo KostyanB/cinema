@@ -1,11 +1,15 @@
 // import './index.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { ContextProvider } from './components/Context';
 import App from './App';
 
-ReactDOM.render(
+const app = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <ContextProvider>
+      <App />
+    </ContextProvider>
+  </React.StrictMode>
 );
+
+render(app, document.getElementById('root'));

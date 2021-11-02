@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import env from '../../../env.json';
 import { Context } from '../../Context';
-import { Container } from '../../Styled/Container';
+import Container from '../../Styled/Container';
 
 const {
     colors: {

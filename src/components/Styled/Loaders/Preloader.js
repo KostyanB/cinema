@@ -1,24 +1,10 @@
 import styled from 'styled-components';
 import React from 'react';
-import env from '../../env.json';
-const { loadWrap, groundColor, hoverColor, alertColor } = env.colors;
+import env from '../../../env.json';
+import LoadContainer from './LoadContainer';
 
-const LoadWrap = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: ${loadWrap};
-  z-index: 1001;
-  height: 100vh;
-`;
-export const ErrorLoad = styled(LoadWrap)`
-  padding-top: 200px;
-  color: ${alertColor};
-  font-size: 30px;
-  text-align: center;
-`;
+const { groundColor, hoverColor } = env.colors;
+// components
 const Loader = styled.div`
   position: absolute;
   top: 50%;
@@ -156,14 +142,15 @@ const Dash4 = styled(Dash)`
     }
   }
 `;
-
-export const Preloader = () => (
-  <LoadWrap>
+//************************ */
+const Preloader = () => (
+  <LoadContainer>
     <Loader>
       <Dash1>L</Dash1>
       <Dash2>O</Dash2>
       <Dash3>A</Dash3>
       <Dash4>D</Dash4>
     </Loader>
-  </LoadWrap>
-);
+  </LoadContainer>
+)
+export default Preloader;
