@@ -18,7 +18,13 @@ const getDateArr = period => {
         const weekDay = weekdays[date.getDay()];
         const month = months[date.getMonth()];
         const year = date.getFullYear();
-        return {'dayNum': day, 'dayName': weekDay, 'monthName': month, 'year': year, 'date': date};
+        return {
+            'dayNum': day,
+            'dayName': weekDay,
+            'monthName': month,
+            'year': year,
+            'date': date
+        };
     };
 
     // push item to arr
@@ -35,5 +41,3 @@ const getDateArr = period => {
     return dateArr;
 }
 export default getDateArr;
-// use
-// getDateArr(yourPeriod);
