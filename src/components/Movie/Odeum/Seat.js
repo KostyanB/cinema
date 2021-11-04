@@ -1,4 +1,4 @@
-import React, { useContext, memo } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import env from '../../../env.json';
 import { Context } from '../../Context';
@@ -9,10 +9,11 @@ const {
     bookedPlace,
     freePlace
 } = env.colors;
+
 // styled
 const PlaceWrap = styled.div`
-    width: ${props => props.size};
-    height: ${props => props.size};
+    width: ${env.scheme.placeSize}px;
+    height: ${env.scheme.placeSize}px;
     cursor: ${props => (props.status === 'isBooked') ?
         'not-allowed' :
             'pointer'
@@ -33,8 +34,7 @@ const PlaceWrap = styled.div`
     }
 `;
 //************************************
-const Seat = memo(function({ status, coord }) {
-    const placeSize = env.scheme.placeSize;
+const Seat = ({ coord, status }) => {
     const [ row, place ] = coord;
     const {
         calendar: {
@@ -44,8 +44,8 @@ const Seat = memo(function({ status, coord }) {
             activeCinema,
         },
         reserved: {
-            addReserved,
-            delReserved,
+            addToReserved,
+            delFromReserved,
         },
     } = useContext(Context);
 
@@ -55,7 +55,7 @@ const Seat = memo(function({ status, coord }) {
             return;
         } else {
             if (status !== 'isReserved') { // добавление в резерв
-                addReserved({
+                addToReserved({
                     coord,
                     activeDate,
                     activeCinema,
@@ -63,14 +63,13 @@ const Seat = memo(function({ status, coord }) {
                     activeMovie
                 });
             } else { // удаление из резерва
-                delReserved(...coord);
+                delFromReserved(coord);
             }
         }
     };
 
     return (
-        <PlaceWrap size={`${placeSize}px`}
-            onClick={handleReserved}
+        <PlaceWrap onClick={handleReserved}
             status={status}
         >
             <SeatIcon name={`ряд ${row}, место ${place}`}
@@ -79,5 +78,5 @@ const Seat = memo(function({ status, coord }) {
             />
         </PlaceWrap>
     );
-})
+}
 export default Seat;

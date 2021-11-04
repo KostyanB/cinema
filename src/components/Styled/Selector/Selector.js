@@ -28,11 +28,6 @@ const Selector = ({
     // откр/закр кликом по кнопке
     const toggleSelector = () => setOpenSelector(!openSelector);
 
-    // утановка 1-го значения по-умолчанию
-    // useEffect(() => {
-    //     !activeSelector && handleSelectParam(items[0]);
-    // }, [items, activeSelector, handleSelectParam]);
-
     // клик вне селектора
     useEffect(() => {
         const onClick = e => {

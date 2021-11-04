@@ -45,21 +45,27 @@ const SeatBlock = () => {
             activeSession,
         },
         reserved: {
-            reserved
-        },
+            reserved,
+        }
     } = useContext(Context);
     const { coords } = useScheme();
 
     const session = activeSession && activeMovieSessions[activeSession];
 
+
     // проверка на booked/reserved
-    const checkSeatStatus = (row, place) => {
+    const checkBooked = (session, row, place) =>
+        (row in session) && (session[row].includes(place));
+
+    const checkReserved = (reserved, row, place) =>
+        reserved && reserved.reservedPlaces
+            .find(item => (item[0] === row && item[1] === place));
+
+    const checkSeatStatus = ({session, reserved, row, place}) => {
         if (session) {
-            if ((row in session) && (session[row].includes(place))) {
+            if (checkBooked(session, row, place)) {
                 return 'isBooked';
-            } else if (reserved && reserved.reservedPlaces
-                .find(item => (item[0] === row && item[1] === place)))
-            {
+            } else if (checkReserved(reserved, row, place)) {
                 return 'isReserved';
             } else {
                 return '';
@@ -76,7 +82,8 @@ const SeatBlock = () => {
                         {item[1].map(coord =>
                             <Seat key={`${coord[0]}-${coord[1]}`}
                                 coord={coord}
-                                status={checkSeatStatus(...coord)}
+                                // status={checkSeatStatus(...coord)}
+                                status={checkSeatStatus({ session, reserved, row: coord[0], place: coord[1] })}
                             />
                         )}
                     </Block>
